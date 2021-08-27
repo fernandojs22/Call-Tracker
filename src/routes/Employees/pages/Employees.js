@@ -1,14 +1,15 @@
 import {
+    Container,
     Typography
 } from '@material-ui/core'
 
 const Employees = () => {
     return (
-        <div>
+        <Container>
             <Typography>
                 Employees
             </Typography>
-        </div>
+        </Container>
     )
 }
 

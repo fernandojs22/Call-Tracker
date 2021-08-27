@@ -1,14 +1,15 @@
 import {
+    Container,
     Typography
 } from '@material-ui/core'
 
 const Dashboard = () => {
     return (
-        <div>
+        <Container>
             <Typography>
                 Dashboard
             </Typography>
-        </div>
+        </Container>
     )
 }
 
