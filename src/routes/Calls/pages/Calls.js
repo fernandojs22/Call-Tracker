@@ -1,7 +1,13 @@
+import {
+    Typography
+} from '@material-ui/core'
+
 const Calls = () => {
     return (
         <div>
-            Calls
+            <Typography>
+                Calls
+            </Typography>
         </div>
     )
 }

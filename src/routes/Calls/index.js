@@ -1,4 +1,4 @@
-import { CALLS as mod2 } from '../../constants/modulesNames'
+import { CALLS as mod2 } from '../../constants/paths'
 import CallsPage from '../Calls/pages/Calls'
 
 const CallsRoute = {

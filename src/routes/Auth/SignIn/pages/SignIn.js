@@ -1,7 +1,13 @@
+import {
+Typography
+} from '@material-ui/core'
+
 const SignIn = () => {
     return (
         <div>
-            SignIn
+            <Typography>
+                SignIn
+            </Typography>
         </div>
     )
 }

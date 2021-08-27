@@ -1,7 +1,13 @@
+import {
+    Typography
+} from '@material-ui/core'
+
 const Customers = () => {
     return (
         <div>
-            Customers
+            <Typography>
+                Customers
+            </Typography>
         </div>
     )
 }
