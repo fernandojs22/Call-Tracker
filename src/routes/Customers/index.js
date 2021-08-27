@@ -1,4 +1,4 @@
-import { CUSTOMERS as mod2 } from '../../constants/modulesNames'
+import { CUSTOMERS as mod2 } from '../../constants/paths'
 import CustomersPage from '../Customers/pages/Customers'
 
 const CustomersRoute = {

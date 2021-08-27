@@ -1,7 +1,13 @@
+import {
+    Typography
+} from '@material-ui/core'
+
 const Dashboard = () => {
     return (
         <div>
-            Dashboard
+            <Typography>
+                Dashboard
+            </Typography>
         </div>
     )
 }

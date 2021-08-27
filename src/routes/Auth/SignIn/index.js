@@ -1,5 +1,5 @@
 // import { loadable } from '../../../utils/router'
-import { SIGNIN as mod2 } from '../../../constants/modulesNames'
+import { SIGNIN as mod2 } from '../../../constants/paths'
 import SignInPage from '../../Auth/SignIn/pages/SignIn'
 
 const SignInRoute = {

@@ -1,4 +1,4 @@
-import { DASHBOARD as mod2 } from '../../constants/modulesNames'
+import { DASHBOARD as mod2 } from '../../constants/paths'
 import DashboardPage from '../Dashboard/pages/Dashboard'
 
 const DashboardRoute = {
