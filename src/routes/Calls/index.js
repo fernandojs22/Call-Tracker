@@ -1,9 +1,9 @@
-import { CALLS as module } from '../../constants/modules'
-import { loadable } from '../../utils/router'
+import { CALLS as mod2 } from '../../constants/modulesNames'
+import CallsPage from '../Calls/pages/Calls'
 
 const CallsRoute = {
-    path: module.path,
-    component: loadable(() => import(module.PAGE))
+    path: mod2.PATH,
+    component: CallsPage
 }
 
 export default CallsRoute

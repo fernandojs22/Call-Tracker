@@ -1,9 +1,11 @@
-import { SIGNIN as module } from '../../constants/modules'
-import { loadable } from '../../utils/router'
+// import { loadable } from '../../../utils/router'
+import { SIGNIN as mod2 } from '../../../constants/modulesNames'
+import SignInPage from '../../Auth/SignIn/pages/SignIn'
 
 const SignInRoute = {
-    path: module.path,
-    component: loadable(() => import(module.PAGE))
+    path: mod2.PATH,
+    component: SignInPage
+    // component: loadable(() => import(mod2.PAGE))
 }
 
 export default SignInRoute
