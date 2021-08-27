@@ -1,29 +1,29 @@
 // public routes
 export const SIGNIN = {
     PATH: '/',
-    PAGE: '../routes/Auth/SignIn/pages'
-} = '/';
+    PAGE: '../../Auth/SignIn/pages/SignIn'
+};
 export const SIGNUP = {
     PATH: '/signup',
-    PAGE: '../routes/Auth/SignUp/pages'
+    PAGE: '../../Auth/SignUp/pages/SignUp'
 };
 
 // auth routes
 export const DASHBOARD = {
     PATH: '/dashboard',
-    PAGE: '../routes/Dashboard/pages'
+    PAGE: '../../Dashboard/pages/Dashboard'
 };
 export const CALLS = {
     PATH: '/calls',
-    PAGE: '../routes/Calls/pages'
+    PAGE: '../../Calls/pages/Calls'
 }
 
 export const CUSTOMERS = {
     PATH: '/customers',
-    PAGE: '../routes/Customers/pages'
+    PAGE: '../../Customers/pages/Customers'
 };
 
 export const EMPLOYEES = {
     PATH: '/employees',
-    PAGE: '../routes/Employees/pages'
+    PAGE: '../../Employees/pages/Employees'
 };

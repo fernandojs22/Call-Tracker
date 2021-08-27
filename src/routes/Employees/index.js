@@ -1,9 +1,9 @@
-import { EMPLOYEES as module } from '../../constants/modules'
-import { loadable } from '../../utils/router'
+import { EMPLOYEES as mod2 } from '../../constants/modulesNames'
+import EmployeesPage from '../Employees/pages/Employees'
 
 const EmployeesRoute = {
-    path: module.path,
-    component: loadable(() => import(module.PAGE))
+    path: mod2.PATH,
+    component: EmployeesPage
 }
 
 export default EmployeesRoute
