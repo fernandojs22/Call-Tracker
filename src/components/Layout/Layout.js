@@ -1,20 +1,20 @@
-import {
-    makeStyles
-} from '@material-ui/core'
+import { useStyles } from '../../assets/stytes/globalStyle'
 
-const drawerWidth = 240
-
-const useStyles = makeStyles((theme) => {
-
-})
+import Navbar from './Navbar'
+import Topbar from './Topbar'
 
 const Layout = ({ children }) => {
-    
+
     const classes = useStyles()
 
     return (
-        <div>
-            {children}
+        <div className={classes.root}>
+            <Navbar classes={classes}/>
+            <Topbar classes={classes}/>
+            <div className={classes.page}>
+                <div className={classes.topbar} />
+                {children}
+            </div>
         </div>
     )
 }

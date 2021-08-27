@@ -1,14 +1,15 @@
 import {
+    Container,
     Typography
 } from '@material-ui/core'
 
 const SignUp = () => {
     return (
-        <div>
+        <Container>
             <Typography>
                 SignUp
             </Typography>
-        </div>
+        </Container>
     )
 }
 

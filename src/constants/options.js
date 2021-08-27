@@ -2,10 +2,11 @@ import {
     Dashboard as DashboardIcon,
     Call as CallIcon,
     Work as WorkIcon,
-    ContactPhone as ContactPhoneIcon
+    ContactPhone as ContactPhoneIcon,
+    PowerSettingsNew as PowerSettingsNewIcon
 } from '@material-ui/icons'
 
-import { DASHBOARD, CALLS, CUSTOMERS, EMPLOYEES } from './paths'
+import { DASHBOARD, CALLS, CUSTOMERS, EMPLOYEES, SIGNIN } from './paths'
 
 export const options = [
     {
@@ -22,11 +23,16 @@ export const options = [
     {
         path: CUSTOMERS.PATH,
         text: 'Customers',
-        icon: <WorkIcon />
+        icon: <ContactPhoneIcon />
     },
     {
         path: EMPLOYEES.PATH,
         text: 'Employees',
-        icon: <ContactPhoneIcon />
+        icon: <WorkIcon />
+    },
+    {
+        path: SIGNIN.PATH,
+        text: 'Logout',
+        icon: <PowerSettingsNewIcon />
     },
 ]

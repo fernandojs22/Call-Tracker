@@ -1,14 +1,15 @@
 import {
+    Container,
     Typography
 } from '@material-ui/core'
 
 const Calls = () => {
     return (
-        <div>
+        <Container>
             <Typography>
                 Calls
             </Typography>
-        </div>
+        </Container>
     )
 }
 

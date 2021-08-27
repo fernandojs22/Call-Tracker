@@ -11,23 +11,20 @@ export const SIGNUP = {
 // auth routes
 export const DASHBOARD = {
     PATH: '/dashboard',
-    PAGE: '../../Dashboard/pages/Dashboard',
-    TEXT: 'Dashboard'
+    PAGE: '../../Dashboard/pages/Dashboard'
 };
+
 export const CALLS = {
     PATH: '/calls',
-    PAGE: '../../Calls/pages/Calls',
-    TEXT: 'Calls'
+    PAGE: '../../Calls/pages/Calls'
 }
 
 export const CUSTOMERS = {
     PATH: '/customers',
-    PAGE: '../../Customers/pages/Customers',
-    TEXT: 'Customers'
+    PAGE: '../../Customers/pages/Customers'
 };
 
 export const EMPLOYEES = {
     PATH: '/employees',
-    PAGE: '../../Employees/pages/Employees',
-    TEXT: 'Employees'
+    PAGE: '../../Employees/pages/Employees'
 };
