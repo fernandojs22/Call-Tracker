@@ -10,6 +10,16 @@ import FormFields from '../Form/FormFields'
 
 import AvatarShortBox from '../Avatar/AvatarShortBox'
 
+const user = {
+    avatar: '/static/images/avatars/avatar_6.png',
+    city: 'Los Angeles',
+    country: 'USA',
+    jobTitle: 'Senior Developer',
+    name: 'Katarina Smith',
+    timezone: 'GTM-7'
+};
+
+
 const Sessions = ({ classes, sessions }) => {
 
     const sessionList = Object.keys(sessions)
@@ -20,7 +30,7 @@ const Sessions = ({ classes, sessions }) => {
             spacing={2}
         >
             <Grid item lg={sessionList.length % 2 === 0 ? 12 : 6}>
-                <AvatarShortBox classes={classes}/>
+                <AvatarShortBox user={user} classes={classes}/>
 
             </Grid>
             {sessionList.map((session) => (
