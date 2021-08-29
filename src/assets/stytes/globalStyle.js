@@ -14,19 +14,21 @@ export const theme = createTheme({
 })
 
 const drawerWidth = 215
+const drawerMarginTop = 64
 
 export const useStyles = makeStyles((theme) => {
     return {
         root: {
-            display:'flex'
+            display: 'flex'
         },
         page: {
             backgroundColor: '#f9f9f9',
             width: '100%',
-            padding: theme.spacing(2)
+            padding: theme.spacing(1)
         },
         drawer: {
-            width: drawerWidth
+            width: drawerWidth,
+            marginTop: drawerMarginTop
         },
         navbarTitle: {
             padding: theme.spacing(1)
@@ -35,14 +37,30 @@ export const useStyles = makeStyles((theme) => {
             backgroundColor: theme.palette.grey[300]
         },
         appbarTitle: {
-            flexGrow: 1
+            flexGrow: 1,
+            marginLeft: theme.spacing(1)
         },
         appbar: {
-            width: `calc(100% - ${drawerWidth}px)`
+            // width: `calc(100% - ${drawerWidth}px)`
+            height: `${drawerMarginTop}px)`
         },
         topbar: theme.mixins.toolbar,
+
         avatar: {
             marginLeft: theme.spacing(2)
-        }
+        },
+        menuButton: {
+            marginLeft: theme.spacing(2)
+        },
+        field: {
+            display: 'block'
+        },
+        submitBtn: {
+            marginTop: 20
+        },
+        avatarCard: {
+            width: theme.spacing(12),
+            height: theme.spacing(12),
+        },
     }
 })
