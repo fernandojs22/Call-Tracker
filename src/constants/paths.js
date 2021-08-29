@@ -28,3 +28,8 @@ export const EMPLOYEES = {
     PATH: '/employees',
     PAGE: '../../Employees/pages/Employees'
 };
+
+export const SETTINGS = {
+    PATH: '/settings',
+    PAGE: '../../Settings/pages/Settings'
+};

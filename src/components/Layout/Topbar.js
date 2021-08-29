@@ -2,8 +2,14 @@ import {
     AppBar,
     Toolbar,
     Typography,
-    Avatar
+    Avatar,
+    IconButton,
+    Badge
 } from '@material-ui/core'
+import {
+    Menu as MenuIcon,
+    NotificationsOutlined as NotificationsOutlinedIcon
+} from '@material-ui/icons'
 
 const Topbar = ({ classes }) => {
 
@@ -17,6 +23,13 @@ const Topbar = ({ classes }) => {
             className={classes.appbar}
         >
             <Toolbar>
+                <IconButton
+                    color="inherit"
+                    edge="end"
+                    aria-label="menu"
+                >
+                    <MenuIcon fontSize="large" />
+                </IconButton>
                 <Typography
                     variant="h4"
                     component="h1"
@@ -24,6 +37,18 @@ const Topbar = ({ classes }) => {
                 >
                     Call List
                 </Typography>
+                <IconButton
+                    color="inherit"
+                    className={classes.menuButton}
+                >
+                    <Badge
+                        variant="standard"
+                        color="error"
+                        badgeContent={99}
+                    >
+                         <NotificationsOutlinedIcon />
+                    </Badge>
+                </IconButton>
                 <Typography>
                     {user.userName}
                 </Typography>

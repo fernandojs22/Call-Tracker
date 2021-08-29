@@ -11,6 +11,7 @@ import Calls from './Calls'
 import Customers from './Customers'
 import Dashboard from './Dashboard'
 import Employees from './Employees'
+import Settings from './Settings'
 
 import {
     ThemeProvider
@@ -20,7 +21,7 @@ import Layout from '../components/Layout/Layout'
 import { theme } from '../assets/stytes/globalStyle'
 
 const publicRoutes = [SignIn, SignUp]
-const privateRoutes = [Calls, Customers, Dashboard, Employees]
+const privateRoutes = [Calls, Customers, Dashboard, Employees, Settings]
 
 const RouterConfig = () => {
     return (

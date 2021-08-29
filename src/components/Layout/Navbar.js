@@ -9,40 +9,42 @@ import {
 } from '@material-ui/core'
 
 import { options } from '../../constants/options'
+import Logo from '../../components/Logo'
 
-const Navbar = ({classes}) => {
+const Navbar = ({ classes }) => {
 
     const history = useHistory()
     const location = useLocation()
 
     return (
-            <Drawer
-                variant="permanent"
-                anchor="left"
-                className={classes.drawer}
-                classes={{ paper: classes.drawer }}
+        <Drawer
+            variant="permanent"
+            anchor="left"
+            className={classes.drawer}
+            classes={{ paper: classes.drawer }}
+        >
+            <Typography
+                variant="h6"
+                className={classes.navbarTitle}
+                align="center"
             >
-                <Typography
-                    variant="h6"
-                    className={classes.navbarTitle}
-                >
-                    Navbar
-                </Typography>
-                <List>
-                    {options.map((item) => (
-                        <ListItem
-                            button
-                            key={item.text}
-                            onClick={() => history.push(item.path)}
-                            className={location.pathname === item.path ? classes.activeMenu : null}
-                        >
-                            <ListItemIcon>{item.icon}</ListItemIcon>
-                            <ListItemText>{item.text}</ListItemText>
-                        </ListItem>
+                <Logo />
+            </Typography>
+            <List>
+                {options.map((item) => (
+                    <ListItem
+                        button
+                        key={item.text}
+                        onClick={() => history.push(item.path)}
+                        className={location.pathname === item.path ? classes.activeMenu : null}
+                    >
+                        <ListItemIcon>{item.icon}</ListItemIcon>
+                        <ListItemText>{item.text}</ListItemText>
+                    </ListItem>
 
-                    ))}
-                </List>
-            </Drawer>
+                ))}
+            </List>
+        </Drawer>
 
     )
 }
