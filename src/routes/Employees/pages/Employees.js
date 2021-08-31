@@ -1,48 +1,55 @@
-import {
-    Container,
-    Button,
-    Grid,
-    ButtonGroup,
-    Divider
-} from '@material-ui/core'
+import { useState } from 'react'
 
 import {
-    KeyboardArrowRight as KeyboardArrowRightIcon
-} from '@material-ui/icons'
+    Button
+} from '@material-ui/core'
 
 import { useStyles } from '../../../assets/stytes/globalStyle'
 
-import { sessions } from '../components/sessionsAndFields'
-import Sessions from '../../../components/SessionsCards/SessionCard'
+import { sessions } from '../models/employeesSessions'
+import EmployeesList from './EmployeesList'
+import EmployeeCard from './EmployeeCard'
 
 const Employees = () => {
 
     const classes = useStyles()
+    const [allFields, setAllFields] = useState([])
+    const sessionList = Object.keys(sessions)
+    const listFields = []
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const handleBtn = () => {
+        if (listFlag) {
+            setListFlag(false)
+        } else {
+            setAllFields(listFields)
+            setListFlag(true)
+        }
     }
 
+    sessionList.map((session) => {
+        return sessions[`${session}`].map((field) => {
+            if (field['listResultId']) {
+                listFields.push(field)
+            }
+            return true
+        })
+    })
+
+    const [listFlag, setListFlag] = useState(false)
+
     return (
-        <Container>
-            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-                <Sessions classes={classes} sessions={sessions} />
-                <Divider  className={classes.submitBtn}/>
-                <Grid container>
-                    <Grid item lg={12} className={classes.submitBtn}>
-                        <ButtonGroup>
-                            <Button
-                                variant="contained"
-                                type="submit"
-                                endIcon={<KeyboardArrowRightIcon />}
-                            >
-                                Submit
-                            </Button>
-                        </ButtonGroup>
-                    </Grid>
-                </Grid>
-            </form>
-        </Container>
+        <div>
+            <Button
+                onClick={handleBtn}
+            >
+                Switch
+            </Button>
+            {
+                listFlag
+                    ? <EmployeeCard classes={classes} sessionList={sessionList} />
+                    : <EmployeesList allFields={allFields} />
+            }
+        </div>
     )
 }
 

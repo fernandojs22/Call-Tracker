@@ -35,7 +35,7 @@ const Sessions = ({ classes, sessions }) => {
             </Grid>
             {sessionList.map((session) => (
                 <Grid item lg={6}>
-                    <Card elevation={1}>
+                    <Card elevation={1} className={classes.sessionCard}>
                         <CardHeader
                             avatar={
                                 <Avatar>

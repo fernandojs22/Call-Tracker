@@ -2,47 +2,58 @@ export const sessions = {
     personal:
     [
         {
+            field: 'id',
+            label: 'Id',
+            variant: 'TextField',
+            required: true,
+            listResultId: 1
+        },
+        {
             field: 'firstName',
             label: 'First Name',
-            variant: 'string',
-            required: true
+            variant: 'TextField',
+            required: true,
+            listResultId: 2
         },
         {
             field: 'lastName',
             label: 'Last Name',
-            variant: 'string',
+            variant: 'TextField',
             required: true
         },
         {
             field: 'jobTitle',
             label: 'Job Title',
-            variant: 'string',
-            required: true
+            variant: 'TextField',
+            required: true,
+            listResultId: 3
         },
         {
             field: 'email',
             label: 'Email',
-            variant: 'string',
-            required: true
+            variant: 'TextField',
+            required: true,
+            listResultId: 4
         },
     ],
     contact: [
         {
             field: 'workPhone',
             label: 'Work Phone',
-            variant: 'string',
-            required: true
+            variant: 'TextField',
+            required: true,
+            listResultId: 5
         },
         {
             field: 'homePhone',
             label: 'Home Phone',
-            variant: 'string',
+            variant: 'TextField',
             required: false
         },
         {
-            field: 'MobilePhone',
+            field: 'mobilePhone',
             label: 'Mobile Phone',
-            variant: 'string',
+            variant: 'TextField',
             required: true
         },
     ],
@@ -50,25 +61,26 @@ export const sessions = {
         {
             field: 'country',
             label: 'Country',
-            variant: 'string',
-            required: true
+            variant: 'TextField',
+            required: true,
+            listResultId: 6
         },
         {
             field: 'street',
             label: 'Street',
-            variant: 'string',
+            variant: 'TextField',
             required: true
         },
         {
             field: 'city',
             label: 'City',
-            variant: 'string',
+            variant: 'TextField',
             required: true
         },
         {
             field: 'state',
             label: 'State/Province',
-            variant: 'string',
+            variant: 'TextField',
             required: true
         },
         {
@@ -82,7 +94,7 @@ export const sessions = {
         {
             field: 'notes',
             label: 'Notes',
-            variant: 'string',
+            variant: 'TextField',
             required: false,
             multiline: true
         }

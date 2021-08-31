@@ -17,6 +17,8 @@ const FormFields = ({ classes, sessions, session }) => {
                             minRows={6}
                             required={field.required}
                             className={classes.field}
+                            id={field.field}
+                            name={field.field}
                         />
 
                     </Typography>
