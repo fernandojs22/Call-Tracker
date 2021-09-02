@@ -1,48 +1,56 @@
 export const sessions = {
-    personal:
-    [
+    avatar: [
         {
-            field: 'id',
-            label: 'Id',
-            variant: 'TextField',
-            required: true,
+            field: 'avatar',
+            label: 'Avatar',
+            variant: 'Avatar',
             listResultId: 1
         },
-        {
-            field: 'firstName',
-            label: 'First Name',
-            variant: 'TextField',
-            required: true,
-            listResultId: 2
-        },
-        {
-            field: 'lastName',
-            label: 'Last Name',
-            variant: 'TextField',
-            required: true
-        },
-        {
-            field: 'jobTitle',
-            label: 'Job Title',
-            variant: 'TextField',
-            required: true,
-            listResultId: 3
-        },
-        {
-            field: 'email',
-            label: 'Email',
-            variant: 'TextField',
-            required: true,
-            listResultId: 4
-        },
     ],
+    personal:
+        [
+            {
+                field: 'id',
+                label: 'Id',
+                variant: 'TextField',
+                required: true,
+                listResultId: 2
+            },
+            {
+                field: 'firstName',
+                label: 'First Name',
+                variant: 'TextField',
+                required: true,
+                listResultId: 3
+            },
+            {
+                field: 'lastName',
+                label: 'Last Name',
+                variant: 'TextField',
+                required: true
+            },
+            {
+                field: 'jobTitle',
+                label: 'Job Title',
+                variant: 'TextField',
+                required: true,
+                listResultId: 4
+            },
+            {
+                field: 'email',
+                label: 'Email',
+                variant: 'TextField',
+                required: true,
+                listResultId: 5
+            },
+        ],
     contact: [
         {
             field: 'workPhone',
             label: 'Work Phone',
             variant: 'TextField',
             required: true,
-            listResultId: 5
+            listResultId: 6
         },
         {
             field: 'homePhone',
@@ -63,7 +71,7 @@ export const sessions = {
             label: 'Country',
             variant: 'TextField',
             required: true,
-            listResultId: 6
+            listResultId: 7
         },
         {
             field: 'street',

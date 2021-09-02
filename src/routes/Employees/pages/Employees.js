@@ -11,9 +11,8 @@ import EmployeesList from './EmployeesList'
 import EmployeeCard from './EmployeeCard'
 
 const Employees = () => {
-
+    
     const classes = useStyles()
-    const [allFields, setAllFields] = useState([])
     const sessionList = Object.keys(sessions)
     const listFields = []
 
@@ -21,7 +20,6 @@ const Employees = () => {
         if (listFlag) {
             setListFlag(false)
         } else {
-            setAllFields(listFields)
             setListFlag(true)
         }
     }
@@ -47,7 +45,7 @@ const Employees = () => {
             {
                 listFlag
                     ? <EmployeeCard classes={classes} sessionList={sessionList} />
-                    : <EmployeesList allFields={allFields} />
+                    : <EmployeesList classes={classes} listFields={listFields} />
             }
         </div>
     )

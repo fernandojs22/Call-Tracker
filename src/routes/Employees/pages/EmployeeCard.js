@@ -8,7 +8,8 @@ import {
 } from '@material-ui/core'
 
 import {
-    KeyboardArrowRight as KeyboardArrowRightIcon
+    KeyboardArrowRight as KeyboardArrowRightIcon,
+    Cancel as CancelIcon
 } from '@material-ui/icons'
 
 import { sessions } from '../models/employeesSessions'
@@ -33,8 +34,19 @@ const EmployeeCard = ({classes}) => {
                             color="primary"
                             className={classes.submitBtn}
                             endIcon={<KeyboardArrowRightIcon />}
+                            name="save"
                         >
                             Save
+                        </Button>
+                        <Button
+                            variant="contained"
+                            type="submit"
+                            color="secondary"
+                            className={classes.submitBtn}
+                            endIcon={<CancelIcon />}
+                            name="cancel"
+                        >
+                            Cancel
                         </Button>
                     </Grid>
                 </Grid>

@@ -1,4 +1,4 @@
-// import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 
 import {
     IconButton,
@@ -7,93 +7,131 @@ import {
     TableHead,
     TableBody,
     TableRow,
-    TableCell
+    TableCell,
+    Container,
+    Box,
+    Button,
+    Checkbox,
+    SvgIcon,
+    TextField,
+    InputAdornment,
+    Avatar,
+    Typography,
+    TablePagination
 } from '@material-ui/core'
 import {
-    Edit as EditIcon
+    Edit as EditIcon,
+    Search as SearchIcon
 
 } from '@material-ui/icons'
 
-const employeesQuery = [
-    {
-        id: 1,
-        firstName: 'Fernando',
-        lastName: '',
-        jobTitle: 'Gte. Comercial',
-        email: 'fernando@gmail.com',
-        workPhone: '2652',
-        homePhone: '',
-        mobilePhone: '',
-        country: 'Rep. Dom.',
-        street: '',
-        city: '',
-        state: '',
-        zipCode: '',
-        notes: ''
-    },
-    {
-        id: 2,
-        firstName: 'Tomas',
-        lastName: '',
-        jobTitle: 'Dir. Comercial',
-        email: 'tomas@gmail.com',
-        workPhone: '2829',
-        homePhone: '',
-        mobilePhone: '',
-        country: 'EE. UU.',
-        street: '',
-        city: '',
-        state: '',
-        zipCode: '',
-        notes: ''
-    },
-]
+import { employeesData } from '../models/employeesData'
 
-// const employeesList = Object.assign([],employeesQuery)
-// const allColumns = Object.keys(employeesQuery[0])
+const EmployeesList = ({ classes, listFields }) => {
 
-const EmployeesList = ({ allFields }) => {
+    const [employeesResult, setEmployeesResult] = useState(employeesData)
 
-        // const resultColumns = allFields.map((item) => item.field)
+    useEffect(() => {
 
-        // const notDisplayColumns = allColumns.filter(x => !resultColumns.includes(x))
-        // notDisplayColumns.map((column) => {
-        //     for (let i = 0; i < employeesList.length; i++) {
-        //         delete employeesList[i][column]
-        //     }
-        // })
+        const allColumns = Object.keys(employeesData[0])
+        const displayColumns = listFields.map((item) => item.field)
+        const notDisplayColumns = allColumns.filter(x => !displayColumns.includes(x))
+        const newEmployeesResult = [...employeesData]
+
+        notDisplayColumns.map((column) => {
+            for (let i = 0; i < newEmployeesResult.length; i++) {
+                delete newEmployeesResult[i][column]
+            }
+            return newEmployeesResult
+        })
+
+        setEmployeesResult(newEmployeesResult)
+    }, [listFields])
 
     return (
-        <Card>
-            <Table>
-                <TableHead>
-                    <TableRow>
-                        {allFields.map((field) => (
-                            <TableCell key={field.field}> {field.label} </TableCell>
-                        ))}
-                        <TableCell> Action </TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {employeesQuery.map((row) => {
-                        const columns = Object.keys(row)
-                        columns.push('action')
-                        return (
-                            <TableRow key={row.id}>
-                                {columns.map((colum) => {
-                                    if (colum !== 'action') {
-                                        return <TableCell key={colum}> {row[colum]} </TableCell>
-                                    } else {
-                                        return <TableCell key="action"><IconButton onClick={(e) => console.log(row)}><EditIcon /></IconButton></TableCell>
-                                    }
-                                })}
-                            </TableRow>
+        <Container>
+            <Box className={classes.boxEnd} >
+                <Button
+                    variant="contained"
+                    color="primary"
+                >
+                    Create Employee
+                </Button>
+            </Box>
+            <Card className={classes.card}>
+                <TextField
+                    // fullWidth
+                    className={classes.searchText}
+                    InputProps={{
+                        startAdornment: (
+                            <InputAdornment position="start">
+                                <SvgIcon
+                                    fontSize="small"
+                                    color="action"
+                                >
+                                    <SearchIcon />
+                                </SvgIcon>
+                            </InputAdornment>
                         )
-                    })}
-                </TableBody>
-            </Table>
-        </Card>
+                    }}
+                    placeholder="Search customer"
+                    variant="outlined"
+                />
+            </Card>
+            <Card>
+                <Table>
+                    <TableHead>
+                        <TableRow>
+                            {listFields.map((field) => {
+                                if (field.field !== 'avatar') {
+                                    return (
+                                        <TableCell key={field.field}> {field.label} </TableCell>
+                                    )
+                                } else {
+                                    return <></>
+                                }
+                            })}
+                            <TableCell> Action </TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {employeesResult.map((row) => {
+                            const columns = Object.keys(row)
+                            columns.push('action')
+                            return (
+                                <TableRow key={row.id}>
+                                    {columns.map((colum) => {
+                                        if (colum === 'id') {
+                                            return <Checkbox key={colum} />
+                                        } else if (colum === 'firstName') {
+                                            return <TableCell key={colum}> <Avatar src={row['avatar']} /><Typography>{row[colum]}</Typography></TableCell>
+                                        } else if (colum !== 'action' && colum !== 'avatar') {
+                                            return <TableCell key={colum}> <Typography>{row[colum]}</Typography> </TableCell>
+                                        } else if (colum === 'action') {
+                                            return <TableCell key="action"><IconButton onClick={(e) => console.log(employeesData.filter((emp) => emp.id === row.id))}><EditIcon /></IconButton></TableCell>
+                                        } else {
+                                            return <></>
+                                        }
+                                    })}
+                                </TableRow>
+                            )
+                        })}
+                    </TableBody>
+                </Table>
+            </Card>
+            <Card>
+                <TablePagination
+                    component="div"
+                    count={employeesResult.length}
+                    // onPageChange={handlePageChange}
+                    // onRowsPerPageChange={handleLimitChange}
+                    // page={1}
+                    // rowsPerPage={1}
+                    // rowsPerPageOptions={[5, 10, 25]}
+                />
+            </Card>
 
+        </Container>
     )
 }
 

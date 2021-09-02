@@ -5,26 +5,25 @@ import {
 
 const FormFields = ({ classes, sessions, session }) => {
     return (
-        <div>
+        <Typography component="span" variant="body2">
             {
                 sessions[`${session}`].map((field) => (
-                    <Typography>
-                        <TextField
-                            variant="outlined"
-                            fullWidth
-                            label={field.label}
-                            multiline={field.multiline}
-                            minRows={6}
-                            required={field.required}
-                            className={classes.field}
-                            id={field.field}
-                            name={field.field}
-                        />
 
-                    </Typography>
+                    <TextField
+                        key={field.field}
+                        variant="outlined"
+                        fullWidth
+                        label={field.label}
+                        multiline={field.multiline}
+                        minRows={6}
+                        required={field.required}
+                        className={classes.field}
+                        id={field.field}
+                        name={field.field}
+                    />
                 ))
             }
-        </div>
+        </Typography>
     )
 }
 
