@@ -2,9 +2,7 @@ import RouterConfig from "./routes";
 
 function App() {
   return (
-    <div>
-      <RouterConfig />
-    </div>
+    <RouterConfig />
   );
 }
 

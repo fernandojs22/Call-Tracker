@@ -53,14 +53,40 @@ export const useStyles = makeStyles((theme) => {
             marginLeft: theme.spacing(2)
         },
         field: {
-            display: 'block'
+            display: 'block',
+            marginTop: 10
+        },
+        buttonGrp: {
+            width: '100%',
+            textAlign: "right"
+
         },
         submitBtn: {
-            marginTop: 20
+            marginTop: 10,
+            marginRight: 15,
+            width: 120
         },
         avatarCard: {
             width: theme.spacing(12),
             height: theme.spacing(12),
         },
+        sessionCard: {
+            marginBottom: theme.spacing(2)
+        },
+        boxEnd: {
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginBottom: 25
+        },
+        card: {
+            marginBottom: 25
+        },
+        searchText: {
+            width: 500,
+            marginBottom: 10,
+            marginTop: 10,
+            marginRight: 10,
+            marginLeft: 10
+        }
     }
 })
