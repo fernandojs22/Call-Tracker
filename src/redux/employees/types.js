@@ -1,0 +1,7 @@
+export const types = {
+    
+    FETCH_EMPLOYEES_DATA_START: '',
+    FETCH_EMPLOYEES_DATA_SUCCESS:'',
+    FETCH_EMPLOYEES_DATA_FAILURE: ''
+
+}
