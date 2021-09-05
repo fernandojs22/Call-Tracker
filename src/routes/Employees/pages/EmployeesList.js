@@ -17,7 +17,7 @@ import {
     InputAdornment,
     Avatar,
     Typography,
-    TablePagination
+    // TablePagination
 } from '@material-ui/core'
 import {
     Edit as EditIcon,
@@ -25,11 +25,18 @@ import {
 
 } from '@material-ui/icons'
 
+import EmployeeCard from './EmployeeCard'
+
 import { employeesData } from '../models/employeesData'
+import { employeesData2 } from '../models/employeesData2'
 
 const EmployeesList = ({ classes, listFields }) => {
 
     const [employeesResult, setEmployeesResult] = useState(employeesData)
+    const [employee, setEmployee] = useState({})
+    
+
+    const [listFlag, setListFlag] = useState(true)
 
     useEffect(() => {
 
@@ -48,12 +55,14 @@ const EmployeesList = ({ classes, listFields }) => {
         setEmployeesResult(newEmployeesResult)
     }, [listFields])
 
-    return (
-        <Container>
+    const employeesList = () => {
+        return (
+            <Container>
             <Box className={classes.boxEnd} >
                 <Button
                     variant="contained"
                     color="primary"
+                    onClick={() => employeeCard()}
                 >
                     Create Employee
                 </Button>
@@ -108,7 +117,7 @@ const EmployeesList = ({ classes, listFields }) => {
                                         } else if (colum !== 'action' && colum !== 'avatar') {
                                             return <TableCell key={colum}> <Typography>{row[colum]}</Typography> </TableCell>
                                         } else if (colum === 'action') {
-                                            return <TableCell key="action"><IconButton onClick={(e) => console.log(employeesData.filter((emp) => emp.id === row.id))}><EditIcon /></IconButton></TableCell>
+                                            return <TableCell key="action"><IconButton onClick={() => employeeCard2(employeesData2.filter((emp) => emp.id === row.id))}><EditIcon /></IconButton></TableCell>
                                         } else {
                                             return <></>
                                         }
@@ -120,18 +129,32 @@ const EmployeesList = ({ classes, listFields }) => {
                 </Table>
             </Card>
             <Card>
-                <TablePagination
+                {/* <TablePagination
                     component="div"
                     count={employeesResult.length}
-                    // onPageChange={handlePageChange}
-                    // onRowsPerPageChange={handleLimitChange}
-                    // page={1}
-                    // rowsPerPage={1}
-                    // rowsPerPageOptions={[5, 10, 25]}
-                />
+                    onPageChange={handlePageChange}
+                    onRowsPerPageChange={handleLimitChange}
+                    page={1}
+                    rowsPerPage={1}
+                    rowsPerPageOptions={[5, 10, 25]}
+                /> */}
             </Card>
 
         </Container>
+        )
+    }
+
+    const employeeCard = () => {
+        setListFlag(false)
+    }
+
+    const employeeCard2 = (emp) => {
+        setEmployee(emp[0])
+        setListFlag(false)
+    }
+
+    return (
+        <Box sx={{m:0}}>{listFlag ? employeesList() : (<EmployeeCard classes={classes} employee={employee}/>)}</Box>
     )
 }
 

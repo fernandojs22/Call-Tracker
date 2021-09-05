@@ -3,7 +3,7 @@ import {
     TextField
 } from '@material-ui/core'
 
-const FormFields = ({ classes, sessions, session }) => {
+const FormFields = ({ classes, sessions, session, employee }) => {
     return (
         <Typography component="span" variant="body2">
             {
@@ -20,6 +20,7 @@ const FormFields = ({ classes, sessions, session }) => {
                         className={classes.field}
                         id={field.field}
                         name={field.field}
+                        value={employee[field.field]}
                     />
                 ))
             }

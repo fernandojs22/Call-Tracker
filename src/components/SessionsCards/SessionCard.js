@@ -20,7 +20,7 @@ const user = {
 };
 
 
-const Sessions = ({ classes, sessions }) => {
+const Sessions = ({ classes, sessions, employee }) => {
 
     const sessionList = Object.keys(sessions)
 
@@ -48,7 +48,7 @@ const Sessions = ({ classes, sessions }) => {
                                     subheader="The information can be edited"
                                 />
                                 <CardContent>
-                                    <FormFields session={session} sessions={sessions} classes={classes} />
+                                    <FormFields session={session} sessions={sessions} classes={classes} employee={employee}/>
                                 </CardContent>
                             </Card>
                         </Grid>
