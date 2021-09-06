@@ -1,4 +1,7 @@
-import { /*useEffect,*/ useState } from 'react'
+import {  useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
+import Alert from '@material-ui//lab/Alert'
 
 import {
     Container,
@@ -12,17 +15,17 @@ import {
     Cancel as CancelIcon
 } from '@material-ui/icons'
 
+import { putEmployee, postEmployee, deleteEmployee } from '../../../redux/employees/actions'
+
 import { sessions } from '../models/employeesSessions'
 import Sessions from '../../../components/SessionsCards/SessionCard'
 
 import EmployeesList from './EmployeesList'
 
-import { useSelector, useDispatch } from 'react-redux'
-import { putEmployee, postEmployee } from '../../../redux/employees/actions'
-
 const EmployeeCard = ({ classes, employee }) => {
 
     const dispatch = useDispatch()
+    const history = useHistory()
     const { employee: employeeState } = useSelector(state => state.Employees)
 
     const sessionList = Object.keys(sessions)
@@ -41,9 +44,36 @@ const EmployeeCard = ({ classes, employee }) => {
         e.preventDefault()
 
         if (buttonName === 'UPDATE') {
-            dispatch(putEmployee(employeeState))
+            dispatch(putEmployee(
+                employeeState,
+                () => {
+                    history.push('/')
+                },
+                () => {
+                    
+                }
+            ))
+
         } else if (buttonName === 'CREATE') {
-            dispatch(postEmployee(employeeState))
+            dispatch(postEmployee(
+                employeeState,
+                () => {
+                    history.push('/')
+                },
+                () => {
+
+                }
+            ))
+        } else if (buttonName === 'DELETE') {
+            dispatch(deleteEmployee(
+                employeeState,
+                () => {
+                    history.push('/')
+                },
+                () => {
+
+                }
+            ))
         }
 
     }
@@ -97,6 +127,17 @@ const EmployeeCard = ({ classes, employee }) => {
                                     onClick={(e) => employeesList(e)}
                                 >
                                     Cancel
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    type="submit"
+                                    className={classes.submitBtn}
+                                    endIcon={<CancelIcon />}
+                                    id="delete"
+                                    onClick={(e) => setButtonName(e.target.innerText)}
+                                >
+                                    Delete
                                 </Button>
                             </Grid>
                         </Grid>

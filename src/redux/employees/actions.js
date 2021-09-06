@@ -64,7 +64,7 @@ export const setEmployee = (employee) => {
     }
 }
 
-export const putEmployee = employee => {
+export const putEmployee = (employee, onSuccess, onError) => {
     return async (dispatch) => {
         try {
             dispatch({ type: types.PUT_EMPLOYEE_REQUEST })
@@ -74,12 +74,14 @@ export const putEmployee = employee => {
                         type: types.PUT_EMPLOYEE_SUCCESS,
                         payload: { data: data }
                     })
+                    onSuccess()
                 })
                 .catch(error => {
                     dispatch({
                         type: types.PUT_EMPLOYEE_FAILURE,
                         payload: { error: error }
                     })
+                    onError()
                 })
 
         } catch (error) {
@@ -87,11 +89,12 @@ export const putEmployee = employee => {
                 type: types.PUT_EMPLOYEE_FAILURE,
                 payload: { error: error }
             })
+            onError()
         }
     }
 }
 
-export const postEmployee = employee => {
+export const postEmployee = (employee, onSuccess, onError)  => {
     return async (dispatch) => {
         try {
             dispatch({ type: types.POST_EMPLOYEE_REQUEST })
@@ -101,12 +104,14 @@ export const postEmployee = employee => {
                         type: types.POST_EMPLOYEE_SUCCESS,
                         payload: { data: data }
                     })
+                    onSuccess()
                 })
                 .catch(error => {
                     dispatch({
                         type: types.POST_EMPLOYEE_FAILURE,
                         payload: { error: error }
                     })
+                    onError()
                 })
 
         } catch (error) {
@@ -114,6 +119,37 @@ export const postEmployee = employee => {
                 type: types.POST_EMPLOYEE_FAILURE,
                 payload: { error: error }
             })
+            onError()
+        }
+    }
+}
+
+export const deleteEmployee = (employee, onSuccess, onError) => {
+    return async (dispatch) => {
+        try {
+            dispatch({ type: types.DELETE_EMPLOYEE_REQUEST })
+            axios.delete(`${fakeAPI}/employees/${employee.id}`)
+                .then(data => {
+                    dispatch({
+                        type: types.DELETE_EMPLOYEE_SUCCESS,
+                        payload: { data: data }
+                    })
+                    onSuccess()
+                })
+                .catch(error => {
+                    dispatch({
+                        type: types.DELETE_EMPLOYEE_FAILURE,
+                        payload: { error: error }
+                    })
+                    onError()
+                })
+
+        } catch (error) {
+            dispatch({
+                type: types.DELETE_EMPLOYEE_FAILURE,
+                payload: { error: error }
+            })
+            onError()
         }
     }
 }

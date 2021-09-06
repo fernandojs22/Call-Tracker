@@ -33,6 +33,22 @@
       "zipCode": "07036",
       "notes": "Algo",
       "avatar": "/static/images/avatars/avatar_3.png"
+    },
+    {
+      "id": "3",
+      "firstName": "Jackeline",
+      "lastName": "Jimenez",
+      "workPhone": "4040",
+      "jobTitle": "Subgte. Comercial",
+      "email": "jackeline@gmail.com",
+      "homePhone": "8668",
+      "mobilePhone": "2416",
+      "country": "Rep. Dom.",
+      "street": "Manzana",
+      "city": "Stgo. Dgo.",
+      "state": "DN",
+      "zipCode": "10010",
+      "notes": "Ahora si si si"
     }
   ]
 }

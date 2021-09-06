@@ -106,6 +106,25 @@ const employeesReducer = (state = initState, action) => {
                 employee: {},
                 error: action.payload.error
             }
+        case types.DELETE_EMPLOYEE_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case types.DELETE_EMPLOYEE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                employee: action.payload.data,
+                error: ``
+            }
+        case types.DELETE_EMPLOYEE_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                employee: {},
+                error: action.payload.error
+            }
         default:
             return state
     }
