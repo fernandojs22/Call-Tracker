@@ -26,9 +26,16 @@ import {
 
 } from '@material-ui/icons'
 
+
+import { useDispatch } from 'react-redux'
+import { getEmployee } from '../../../redux/employees/actions'
+
+
 import EmployeeCard from './EmployeeCard'
 
 const EmployeesList = ({ classes, listFields }) => {
+
+    const dispatch = useDispatch()
 
     const { employees, employees2 } = useSelector(state => state.Employees)
 
@@ -62,7 +69,7 @@ const EmployeesList = ({ classes, listFields }) => {
                 <Button
                     variant="contained"
                     color="primary"
-                    onClick={() => employeeCard()}
+                    onClick={() => employeeCard({})}
                 >
                     Create Employee
                 </Button>
@@ -144,13 +151,15 @@ const EmployeesList = ({ classes, listFields }) => {
         )
     }
 
-    const employeeCard = () => {
+    const employeeCard = (emp) => {
         setListFlag(false)
+        // dispatch(setEmployee())
     }
 
     const employeeCard2 = (emp) => {
         setEmployee(emp[0])
         setListFlag(false)
+        dispatch(getEmployee(emp[0]))
     }
 
     return (

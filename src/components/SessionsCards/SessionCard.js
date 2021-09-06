@@ -1,12 +1,18 @@
+import { useState } from 'react'
+
 import {
     Grid,
     Avatar,
     Card,
     CardHeader,
-    CardContent
+    CardContent,
+    Typography,
+    TextField
 } from '@material-ui/core'
 
-import FormFields from '../Form/FormFields'
+import { useDispatch } from 'react-redux'
+
+import { setEmployee } from '../../redux/employees/actions'
 
 import AvatarShortBox from '../Avatar/AvatarShortBox'
 
@@ -22,7 +28,15 @@ const user = {
 
 const Sessions = ({ classes, sessions, employee }) => {
 
+    const dispatch = useDispatch()
     const sessionList = Object.keys(sessions)
+
+    const [employeeState, setEmployeeState] = useState(employee)
+    
+    const handleChange = (e) => {
+        setEmployeeState({ ...employeeState, [e.target.name]: e.target.value })
+        dispatch(setEmployee({ ...employeeState, [e.target.name]: e.target.value }))
+    }
 
     return (
         <Grid
@@ -48,7 +62,28 @@ const Sessions = ({ classes, sessions, employee }) => {
                                     subheader="The information can be edited"
                                 />
                                 <CardContent>
-                                    <FormFields session={session} sessions={sessions} classes={classes} employee={employee}/>
+                                    <Typography component="span" variant="body2">
+                                        {
+                                            sessions[`${session}`].map((field) => {
+                                                return (
+                                                    <TextField
+                                                        key={field.field}
+                                                        variant="outlined"
+                                                        fullWidth
+                                                        label={field.label}
+                                                        multiline={field.multiline}
+                                                        minRows={6}
+                                                        required={field.required}
+                                                        className={classes.field}
+                                                        id={field.field}
+                                                        name={field.field}
+                                                        value={employeeState[field.field]}
+                                                        onChange={(e) => handleChange(e)}
+                                                    />
+                                                )
+                                            })
+                                        }
+                                    </Typography>
                                 </CardContent>
                             </Card>
                         </Grid>

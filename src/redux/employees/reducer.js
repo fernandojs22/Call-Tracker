@@ -4,6 +4,7 @@ const initState = {
     loading: false,
     employees: [],
     employees2: [],
+    employee: {},
     error: ``
 }
 
@@ -27,6 +28,101 @@ const employeesReducer = (state = initState, action) => {
                 ...state,
                 loading: false,
                 employees: [],
+                error: action.payload.error
+            }
+        case types.GET_EMPLOYEE_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case types.GET_EMPLOYEE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                employee: action.payload.data,
+                error: ``
+            }
+        case types.GET_EMPLOYEE_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                employee: {},
+                error: action.payload.error
+            }
+        case types.SET_EMPLOYEE_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case types.SET_EMPLOYEE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                employee: action.payload.data,
+                error: ``
+            }
+        case types.SET_EMPLOYEE_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                employee: {},
+                error: action.payload.error
+            }
+        case types.POST_EMPLOYEE_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case types.POST_EMPLOYEE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                employee: action.payload.data,
+                error: ``
+            }
+        case types.POST_EMPLOYEE_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                employee: {},
+                error: action.payload.error
+            }
+        case types.PUT_EMPLOYEE_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case types.PUT_EMPLOYEE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                employee: action.payload.data,
+                error: ``
+            }
+        case types.PUT_EMPLOYEE_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                employee: {},
+                error: action.payload.error
+            }
+        case types.DELETE_EMPLOYEE_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case types.DELETE_EMPLOYEE_SUCCESS:
+            return {
+                ...state,
+                loading: false,
+                employee: action.payload.data,
+                error: ``
+            }
+        case types.DELETE_EMPLOYEE_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                employee: {},
                 error: action.payload.error
             }
         default:
