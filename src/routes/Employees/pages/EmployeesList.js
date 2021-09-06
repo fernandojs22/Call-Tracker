@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 
 import {
     IconButton,
@@ -27,12 +28,11 @@ import {
 
 import EmployeeCard from './EmployeeCard'
 
-import { employeesData } from '../models/employeesData'
-import { employeesData2 } from '../models/employeesData2'
-
 const EmployeesList = ({ classes, listFields }) => {
 
-    const [employeesResult, setEmployeesResult] = useState(employeesData)
+    const { employees, employees2 } = useSelector(state => state.Employees)
+
+    const [employeesResult, setEmployeesResult] = useState(employees)
     const [employee, setEmployee] = useState({})
     
 
@@ -40,10 +40,10 @@ const EmployeesList = ({ classes, listFields }) => {
 
     useEffect(() => {
 
-        const allColumns = Object.keys(employeesData[0])
+        const allColumns = Object.keys(employees[0] || [])
         const displayColumns = listFields.map((item) => item.field)
         const notDisplayColumns = allColumns.filter(x => !displayColumns.includes(x))
-        const newEmployeesResult = [...employeesData]
+        const newEmployeesResult = [...employees]
 
         notDisplayColumns.map((column) => {
             for (let i = 0; i < newEmployeesResult.length; i++) {
@@ -117,7 +117,7 @@ const EmployeesList = ({ classes, listFields }) => {
                                         } else if (colum !== 'action' && colum !== 'avatar') {
                                             return <TableCell key={colum}> <Typography>{row[colum]}</Typography> </TableCell>
                                         } else if (colum === 'action') {
-                                            return <TableCell key="action"><IconButton onClick={() => employeeCard2(employeesData2.filter((emp) => emp.id === row.id))}><EditIcon /></IconButton></TableCell>
+                                            return <TableCell key="action"><IconButton onClick={() => employeeCard2(employees2.filter((emp) => emp.id === row.id))}><EditIcon /></IconButton></TableCell>
                                         } else {
                                             return <></>
                                         }
