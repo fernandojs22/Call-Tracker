@@ -50,5 +50,17 @@
       "zipCode": "10010",
       "notes": "Ahora si si si"
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "user1",
+      "email": "user1@gmail.com"
+    },
+    {
+      "id": 2,
+      "username": "user2",
+      "email": "user2@gmail.com"
+    }
   ]
 }
