@@ -2,7 +2,8 @@ import React from 'react'
 import {
     BrowserRouter as Router,
     Switch,
-    Route
+    Route,
+    Redirect
 } from 'react-router-dom'
 
 import SignIn from './Auth/SignIn'
@@ -13,11 +14,15 @@ import Dashboard from './Dashboard'
 import Employees from './Employees'
 import Settings from './Settings'
 
+import { history } from '../redux/store'
+
 import {
     ThemeProvider
 } from '@material-ui/core'
 
 import Layout from '../components/Layout/Layout'
+import Main from '../components/Main/Main'
+
 import { theme } from '../assets/stytes/globalStyle'
 
 const publicRoutes = [SignIn, SignUp]
@@ -26,29 +31,31 @@ const privateRoutes = [Calls, Customers, Dashboard, Employees, Settings]
 const RouterConfig = () => {
     return (
         <ThemeProvider theme={theme}>
-            <Router>
-                <Layout>
+            <Router history={history}>
+                <Main>
                     <Switch>
-                        {publicRoutes.map(({ path, component: Component }) => (
+                        {publicRoutes.map(route => (
                             <Route
-                                key={`Route-${path}`}
-                                path={path}
+                                key={`Route-${route.path}`}
+                                path={route.path}
+                                component={route.component}
                                 exact
-                            >
-                                <Component />
-                            </Route>
+                            />
                         ))}
                     </Switch>
+                </Main>
+                <Layout>
                     <Switch>
-                        {privateRoutes.map(({ path, component: Component }) => (
+                        {privateRoutes.map(route => (
                             <Route
-                                key={`Route-${path}`}
-                                path={path}
+                                key={`Route-${route.path}`}
+                                path={route.path}
+                                component={route.component}
                                 exact
-                            >
-                                <Component />
-                            </Route>
+                            />
                         ))}
+                        <Route />
+                        <Redirect to='/' />
                     </Switch>
                 </Layout>
             </Router>

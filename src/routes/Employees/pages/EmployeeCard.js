@@ -1,7 +1,7 @@
 import {  useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
-import Alert from '@material-ui//lab/Alert'
+import Alert from '@material-ui/lab/Alert'
 
 import {
     Container,
