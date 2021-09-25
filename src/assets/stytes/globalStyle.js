@@ -25,7 +25,7 @@ export const useStyles = makeStyles((theme) => {
             backgroundColor: '#f9f9f9',
             width: '100%',
             padding: theme.spacing(1)
-        },
+        },     
         drawer: {
             width: drawerWidth,
             marginTop: drawerMarginTop

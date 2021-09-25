@@ -3,11 +3,16 @@ import {
     Typography
 } from '@material-ui/core'
 
+import Alert from '@material-ui/lab/Alert'
+
 const Dashboard = () => {
     return (
         <Container>
             <Typography>
-                Dashboard
+                <Alert severity="error">This is an error alert — check it out!</Alert>
+                <Alert severity="warning">This is a warning alert — check it out!</Alert>
+                <Alert severity="info">This is an info alert — check it out!</Alert>
+                <Alert severity="success">This is a success alert — check it out!</Alert>
             </Typography>
         </Container>
     )

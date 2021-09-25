@@ -60,7 +60,7 @@ const EmployeesList = ({ classes, listFields }) => {
         })
 
         setEmployeesResult(newEmployeesResult)
-    }, [listFields])
+    }, [listFields,employees])
 
     const employeesList = () => {
         return (

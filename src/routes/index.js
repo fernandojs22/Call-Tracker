@@ -25,39 +25,49 @@ import Main from '../components/Main/Main'
 
 import { theme } from '../assets/stytes/globalStyle'
 
+import { useSelector } from 'react-redux'
+
 const publicRoutes = [SignIn, SignUp]
 const privateRoutes = [Calls, Customers, Dashboard, Employees, Settings]
 
 const RouterConfig = () => {
+
+    const { id_token } = useSelector(state => state.User)
+
+
     return (
         <ThemeProvider theme={theme}>
             <Router history={history}>
-                <Main>
-                    <Switch>
-                        {publicRoutes.map(route => (
-                            <Route
-                                key={`Route-${route.path}`}
-                                path={route.path}
-                                component={route.component}
-                                exact
-                            />
-                        ))}
-                    </Switch>
-                </Main>
-                <Layout>
-                    <Switch>
-                        {privateRoutes.map(route => (
-                            <Route
-                                key={`Route-${route.path}`}
-                                path={route.path}
-                                component={route.component}
-                                exact
-                            />
-                        ))}
-                        <Route />
-                        <Redirect to='/' />
-                    </Switch>
-                </Layout>
+                {
+                    id_token ?
+                        <Layout>
+                            <Switch>
+                                {privateRoutes.map(route => (
+                                    <Route
+                                        key={`Route-${route.path}`}
+                                        path={route.path}
+                                        component={route.component}
+                                        exact
+                                    />
+                                ))}
+                                <Route />
+                                <Redirect to='/' />
+                            </Switch>
+                        </Layout>
+                        :
+                        <Main>
+                            <Switch>
+                                {publicRoutes.map(route => (
+                                    <Route
+                                        key={`Route-${route.path}`}
+                                        path={route.path}
+                                        component={route.component}
+                                        exact
+                                    />
+                                ))}
+                            </Switch>
+                        </Main>
+                }
             </Router>
         </ThemeProvider>
     )
