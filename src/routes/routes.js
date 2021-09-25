@@ -9,6 +9,7 @@ import Employees from './Employees'
 import Settings from './Settings'
 
 import Layout from '../components/Layout/Layout'
+import Main from '../components/Main/Main'
 
 const routes = [
   {
@@ -24,7 +25,7 @@ const routes = [
   },
   {
     path: '/',
-    element: <div />,
+    element: <Main />,
     children: [
       { path: SignIn.path, element: <SignIn /> },
       { path: SignUp.path, element: <SignUp /> }

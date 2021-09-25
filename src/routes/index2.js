@@ -4,6 +4,8 @@ import {
     useRoutes
 } from 'react-router-dom'
 
+import { history } from '../redux/store'
+
 import {
     ThemeProvider
 } from '@material-ui/core'
@@ -16,7 +18,7 @@ const RouterConfig = () => {
     const routing = useRoutes(routes)
     return (
         <ThemeProvider theme={theme}>
-            <Router>
+            <Router history={history}>
                 {routing}
             </Router>
         </ThemeProvider>

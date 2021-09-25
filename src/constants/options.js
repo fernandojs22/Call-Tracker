@@ -3,11 +3,10 @@ import {
     Call as CallIcon,
     Work as WorkIcon,
     ContactPhone as ContactPhoneIcon,
-    PowerSettingsNew as PowerSettingsNewIcon,
     Settings as SettingsIcon
 } from '@material-ui/icons'
 
-import { DASHBOARD, CALLS, CUSTOMERS, EMPLOYEES, SETTINGS, SIGNIN } from './paths'
+import { DASHBOARD, CALLS, CUSTOMERS, EMPLOYEES, SETTINGS } from './paths'
 
 export const options = [
     {
@@ -35,10 +34,5 @@ export const options = [
         path: SETTINGS.PATH,
         text: 'Settings',
         icon: <SettingsIcon />
-    },    
-    {
-        path: SIGNIN.PATH,
-        text: 'Logout',
-        icon: <PowerSettingsNewIcon />
-    },
+    }
 ]

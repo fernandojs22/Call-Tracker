@@ -7,13 +7,14 @@ const locationHelper = locationHelperBuilder({});
 export const userIsAuthenticated = connectedRouterRedirect({
     allowRedirectBack: true,
     redirectPath: '/',
-    authenticatedSelector: state => state.User.user !== null,
+    // authenticatedSelector: state => state.User.user !== null,
+    authenticatedSelector: state => state.User.authenticated,
     wrapperDisplayName: 'userIsAuthenticated'
 })
 
 export const userIsNotAuthenticated = connectedRouterRedirect({
     allowRedirectBack: false,
     redirectPath: (state, ownProps) => locationHelper.getRedirectQueryParam(ownProps) || "/",
-    authenticatedSelector: state => state.User.user === null,
+    authenticatedSelector: state => !state.User.authenticated,
     wrapperDisplayName: 'userIsNotAuthenticated'
 })
