@@ -54,7 +54,12 @@ export const useStyles = makeStyles((theme) => {
         },
         field: {
             display: 'block',
-            marginTop: 10
+            margin: 10,
+            marginBottom: 10
+        },
+        textField: {
+            margin: 10,
+            width: '95%'
         },
         buttonGrp: {
             width: '100%',

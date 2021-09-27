@@ -1,5 +1,5 @@
 import { DASHBOARD as mod2 } from '../../constants/paths'
-import DashboardPage from '../Dashboard/pages/Dashboard'
+import DashboardPage from './pages/Dashboard'
 import enhance from './enhance'
 
 const DashboardRoute = {

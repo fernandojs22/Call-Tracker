@@ -1,5 +1,5 @@
 import { CALLS as mod2 } from '../../constants/paths'
-import CallsPage from '../Calls/pages/Calls'
+import CallsPage from './pages/Calls'
 import enhance from './enhance'
 
 const CallsRoute = {

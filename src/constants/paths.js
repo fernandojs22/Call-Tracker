@@ -33,3 +33,8 @@ export const SETTINGS = {
     PATH: '/settings',
     PAGE: '../../Settings/pages/Settings'
 };
+
+export const FORGOT = {
+    PATH: '/forgot',
+    PAGE: '../../ForgotPassword/pages/ForgotPassword'
+};
