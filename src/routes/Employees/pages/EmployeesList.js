@@ -50,7 +50,8 @@ const EmployeesList = ({ classes, listFields }) => {
         const allColumns = Object.keys(employees[0] || [])
         const displayColumns = listFields.map((item) => item.field)
         const notDisplayColumns = allColumns.filter(x => !displayColumns.includes(x))
-        const newEmployeesResult = [...employees]
+        
+        const newEmployeesResult = employees.map(e => Object.assign({},e))
 
         notDisplayColumns.map((column) => {
             for (let i = 0; i < newEmployeesResult.length; i++) {
@@ -115,7 +116,7 @@ const EmployeesList = ({ classes, listFields }) => {
                             const columns = Object.keys(row)
                             columns.push('action')
                             return (
-                                <TableRow key={row.id}>
+                                <TableRow key={row._id}>
                                     {columns.map((colum) => {
                                         if (colum === 'id') {
                                             return <Checkbox key={colum} />
@@ -124,7 +125,7 @@ const EmployeesList = ({ classes, listFields }) => {
                                         } else if (colum !== 'action' && colum !== 'avatar') {
                                             return <TableCell key={colum}> <Typography>{row[colum]}</Typography> </TableCell>
                                         } else if (colum === 'action') {
-                                            return <TableCell key="action"><IconButton onClick={() => employeeCard2(employees2.filter((emp) => emp.id === row.id))}><EditIcon /></IconButton></TableCell>
+                                            return <TableCell key="action"><IconButton onClick={() => employeeCard2(employees2.filter((emp) => emp._id === row._id))}><EditIcon /></IconButton></TableCell>
                                         } else {
                                             return <></>
                                         }
