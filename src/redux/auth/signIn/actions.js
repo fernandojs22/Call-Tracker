@@ -46,6 +46,7 @@ export const signInLocalAction = (user, onSuccess, onError) => {
                         type: TYPES.LOGIN_SUCCESS,
                         payload: response.data
                     })
+                    localStorage.setItem('token', response.data.token)
                     dispatch(setUserAction(response.data.token))
                     onSuccess()
                 })

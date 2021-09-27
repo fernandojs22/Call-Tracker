@@ -1,14 +1,17 @@
 import axios from 'axios'
 import { types } from './types'
 
-const fakeAPI = process.env.REACT_APP_FAKE_API_URL
+// const fakeAPI = process.env.REACT_APP_FAKE_API_URL
+const databaseAPI = process.env.REACT_APP_FAKE_AUTH_API_URL
 
 export const fetchEmployees = () => {
+    
+    const token = localStorage.getItem('token')
 
     return async (dispatch) => {
         try {
             dispatch({ type: types.FETCH_EMPLOYEES_REQUEST })
-            await axios.get(`${fakeAPI}/employees`)
+            await axios.get(`${databaseAPI}/employees`, { params: { secret_token: token }} )
                 .then(responde => {
                     dispatch({
                         type: types.FETCH_EMPLOYEES_SUCCESS,
@@ -65,10 +68,13 @@ export const setEmployee = (employee) => {
 }
 
 export const putEmployee = (employee, onSuccess, onError) => {
+    
+    const token = localStorage.getItem('token')
+
     return async (dispatch) => {
         try {
             dispatch({ type: types.PUT_EMPLOYEE_REQUEST })
-            axios.put(`${fakeAPI}/employees/${employee.id}`, employee)
+            axios.put(`${databaseAPI}/employees`, employee, { params: { secret_token: token, _id: employee._id }})
                 .then(data => {
                     dispatch({
                         type: types.PUT_EMPLOYEE_SUCCESS,
@@ -95,10 +101,16 @@ export const putEmployee = (employee, onSuccess, onError) => {
 }
 
 export const postEmployee = (employee, onSuccess, onError)  => {
+    
+    const token = localStorage.getItem('token')
+
+    const { _id, ...data } = employee
+    data.id = 999
+
     return async (dispatch) => {
         try {
             dispatch({ type: types.POST_EMPLOYEE_REQUEST })
-            axios.post(`${fakeAPI}/employees`, employee)
+            axios.post(`${databaseAPI}/employees`, data, { params: { secret_token: token, _id: employee._id }})
                 .then(data => {
                     dispatch({
                         type: types.POST_EMPLOYEE_SUCCESS,
@@ -125,10 +137,13 @@ export const postEmployee = (employee, onSuccess, onError)  => {
 }
 
 export const deleteEmployee = (employee, onSuccess, onError) => {
+    
+    const token = localStorage.getItem('token')
+
     return async (dispatch) => {
         try {
             dispatch({ type: types.DELETE_EMPLOYEE_REQUEST })
-            axios.delete(`${fakeAPI}/employees/${employee.id}`)
+            axios.delete(`${databaseAPI}/employees`, { params: { secret_token: token, _id: employee._id }})
                 .then(data => {
                     dispatch({
                         type: types.DELETE_EMPLOYEE_SUCCESS,

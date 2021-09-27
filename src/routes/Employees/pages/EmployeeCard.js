@@ -1,12 +1,18 @@
-import {  useState } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 
 import {
     Container,
     Button,
     Grid,
-    Divider
+    Divider,
+    Avatar,
+    Card,
+    CardHeader,
+    CardContent,
+    Typography,
+    TextField
 } from '@material-ui/core'
 
 import {
@@ -17,15 +23,31 @@ import {
 import { putEmployee, postEmployee, deleteEmployee } from '../../../redux/employees/actions'
 
 import { sessions } from '../models/employeesSessions'
-import Sessions from '../../../components/SessionsCards/SessionCard'
+// import Sessions from '../../../components/SessionsCards/SessionCard'
 
 import EmployeesList from './EmployeesList'
 
+import AvatarShortBox from '../../../components/Avatar/AvatarShortBox'
+
+const user = {
+    avatar: '/static/images/avatars/avatar_6.png',
+    city: 'Los Angeles',
+    country: 'USA',
+    jobTitle: 'Senior Developer',
+    name: 'Katarina Smith',
+    timezone: 'GTM-7'
+};
+
 const EmployeeCard = ({ classes, employee }) => {
+
+    const [employeeState, setEmployeeState] = useState(employee)
+    
+    const handleChange = (e) => {
+        setEmployeeState(prevState => { return { ...prevState, [e.target.name]: e.target.value }})
+    }
 
     const dispatch = useDispatch()
     const history = useHistory()
-    const { employee: employeeState } = useSelector(state => state.Employees)
 
     const sessionList = Object.keys(sessions)
     const listFields = []
@@ -42,6 +64,8 @@ const EmployeeCard = ({ classes, employee }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        console.log(buttonName)
+
         if (buttonName === 'UPDATE') {
             dispatch(putEmployee(
                 employeeState,
@@ -49,7 +73,7 @@ const EmployeeCard = ({ classes, employee }) => {
                     history.push('/')
                 },
                 () => {
-                    
+
                 }
             ))
 
@@ -86,10 +110,69 @@ const EmployeeCard = ({ classes, employee }) => {
         setButtonName(e.target.innerText)
     }
 
+    const Sessions = () => {
+        return (
+            <Grid
+                container
+                spacing={2}
+            >
+                <Grid item lg={sessionList.length % 2 === 0 ? 12 : 6}>
+                    <AvatarShortBox user={user} classes={classes} />
+
+                </Grid>
+                {sessionList.map((session) => {
+                    if (session !== 'avatar') {
+                        return (
+                            <Grid item lg={6} key={session}>
+                                <Card elevation={1} className={classes.sessionCard}>
+                                    <CardHeader
+                                        avatar={
+                                            <Avatar>
+                                                {`${session}`[0].toUpperCase()}
+                                            </Avatar>
+                                        }
+                                        title={`${session}`.toUpperCase()}
+                                        subheader="The information can be edited"
+                                    />
+                                    <CardContent>
+                                        <Typography component="span" variant="body2">
+                                            {
+                                                sessions[`${session}`].map((field) => {
+                                                    return (
+                                                        <TextField
+                                                            key={field.field}
+                                                            variant="outlined"
+                                                            fullWidth
+                                                            label={field.label}
+                                                            multiline={field.multiline}
+                                                            minRows={6}
+                                                            required={field.required}
+                                                            className={classes.field}
+                                                            id={field.field}
+                                                            name={field.field}
+                                                            value={employeeState[field.field]}
+                                                            onChange={(e) => handleChange(e)}
+                                                        />
+                                                    )
+                                                })
+                                            }
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Grid>
+                        )
+                    } else {
+                        return <div></div>
+                    }
+                })}
+            </Grid>
+        )
+    }
+
     return (
         <Container>
             <form noValidate autoComplete="off" onSubmit={handleSubmit}>
-                {cardFlag ? <Sessions classes={classes} sessions={sessions} employee={employee} /> : <EmployeesList classes={classes} listFields={listFields} />}
+                {cardFlag ? Sessions() : <EmployeesList classes={classes} listFields={listFields} />}
                 {cardFlag ? <Divider /> : null}
                 {
                     cardFlag ?

@@ -10,7 +10,7 @@ export const sessions = {
     personal:
         [
             {
-                field: 'id',
+                field: '_id',
                 label: 'Id',
                 variant: 'TextField',
                 required: true,
