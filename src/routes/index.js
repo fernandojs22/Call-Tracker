@@ -33,14 +33,14 @@ const privateRoutes = [Calls, Customers, Dashboard, Employees, Settings]
 
 const RouterConfig = () => {
 
-    const { id_token } = useSelector(state => state.User)
+    const { authenticated } = useSelector(state => state.User)
 
 
     return (
         <ThemeProvider theme={theme}>
             <Router history={history}>
                 {
-                    id_token ?
+                    authenticated ?
                         <Layout>
                             <Switch>
                                 {privateRoutes.map(route => (
