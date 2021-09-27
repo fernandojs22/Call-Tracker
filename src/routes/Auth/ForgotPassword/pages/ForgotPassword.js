@@ -1,90 +1,84 @@
-import React/*, { useState }*/ from 'react'
+import React, { useState } from 'react'
 
-// import { useHistory, Link } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 
-// import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import {
     Grid,
-    // Typography,
-    // TextField,
-    // Checkbox,
-    // Button,
-    // Box,
-    // InputAdornment,
-    // IconButton,
-    // FormControlLabel
+    Typography,
+    TextField,
+    Button,
+    Box,
+    FormControlLabel,
+    FormControl,
+    Radio,
+    RadioGroup,
+    Divider
 } from '@material-ui/core'
 
-// import {
-//     KeyboardArrowRight as KeyboardArrowRightIcon,
-//     Visibility as VisibilityIcon,
-//     VisibilityOff as VisibilityOffIcon
-// } from '@material-ui/icons'
+import {
+    KeyboardArrowRight as KeyboardArrowRightIcon
+} from '@material-ui/icons'
 
-// import { signInLocalAction } from '../../../../redux/auth/signIn/actions'
+import { forgotPasswordAction } from '../../../../redux/auth/forgotPassword/actions'
 
-// import { useStyles } from '../../../../assets/stytes/globalStyle'
-// import { Alert } from '@material-ui/lab'
+import { useStyles } from '../../../../assets/stytes/globalStyle'
 
 const ForgotPassword = () => {
 
-    // const classes = useStyles()
+    const classes = useStyles()
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
-    // const history = useHistory()
+    const history = useHistory()
 
-    // const [loginForm, setLoginForm] = useState({
-    //     email: "",
-    //     password: ""
-    // })
+    const [loginForm, setLoginForm] = useState({
+        email: ""
+    })
 
-    // const [loginFormError, setLoginFormError] = useState({
-    //     email: true,
-    //     password: true
-    // })
+    const [loginFormError, setLoginFormError] = useState({
+        email: true
+    })
 
-    // const handleSubmit = (e) => {
-    //     e.preventDefault()
+    const handleSubmit = (e) => {
+        e.preventDefault()
 
-    //     const flag = Object.values(loginFormError).find(e => e === true)
+        const flag = Object.values(loginFormError).find(e => e === true)
 
-    //     if (flag) {
-    //         alert('A field is empy')
-    //     } else {
-    //         dispatch(signInLocalAction
-    //             (
-    //                 loginForm.email, loginForm.password,
-    //                 () => {
-    //                     history.push('/dashboard')
-    //                 },
-    //                 (error) => {
-    //                     alert(error)
-    //                 },
-    //             ))
-    //     }
-    // }
+        if (flag) {
+            alert('A field is empy')
+        } else {
+            alert('dispatch')
+            dispatch(forgotPasswordAction
+                (
+                    loginForm.email,
+                    () => {
+                        history.push('/')
+                    },
+                    (error) => {
+                        alert(error)
+                    },
+                ))
+        }
+    }
 
-    // const handleChange = (e) => {
-    //     const name = e.target.name
-    //     const value = e.target.value
+    const handleChange = (e) => {
+        const name = e.target.name
+        const value = e.target.value
 
-    //     setLoginForm({ ...loginForm, [name]: value })
+        setLoginForm({ ...loginForm, [name]: value })
 
-    //     if (value === "") {
-    //         setLoginFormError({ ...loginFormError, [name]: true })
-    //     } else {
-    //         setLoginFormError({ ...loginFormError, [name]: false })
-    //     }
-    // }
-
-    // const [visibility, setVisibility] = useState(true)
+        if (value === "") {
+            setLoginFormError({ ...loginFormError, [name]: true })
+        } else {
+            setLoginFormError({ ...loginFormError, [name]: false })
+        }
+    }
 
     return (
         <Grid container direction="column" justifyContent="flex-end" alignItems="center">
-            ForgotPassword
-            {/* <Grid item xs={12} justifyContent="center">
+            <Grid item xs={12} justifyContent="center">
                 <Box>
                     <Typography
                         variant="h5"
@@ -93,36 +87,32 @@ const ForgotPassword = () => {
                         gutterBottom
                         align="center"
                     >
-                        Hi, Welcome Back
+                        Forgot Password
                     </Typography>
                     <Typography
                         color="textSecondary"
                         gutterBottom
                         align="center"
                     >
-                        Enter your credentials to continue
+                        How would you like to reset your password?
                     </Typography>
-                    <Button
-                        variant="text"
-                        fullWidth
-                        startIcon={<KeyboardArrowRightIcon />}
-                        disableElevation
-                    >
-                        Sign In With Google
-                    </Button>
-                    <Typography
-                        color="textSecondary"
-                        gutterBottom
-                        align="center"
-                    >
-                        OR
+                    <Typography align="center">
+                        <FormControl component="fieldset">
+                            <RadioGroup
+                                defaultValue="email"
+                                name="reset-pwd-methods"
+                            >
+                                <FormControlLabel value="email" control={<Radio />} label="Email" />
+                                <FormControlLabel value="sms" control={<Radio />} label="Text Message (SMS)" />
+                            </RadioGroup>
+                        </FormControl>
                     </Typography>
                     <Typography
                         color="textSecondary"
                         gutterBottom
                         align="center"
                     >
-                        Sign in with Email address
+                        We will send you an email with instructions on how to reset your password.
                     </Typography>
                     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
                         <TextField
@@ -138,55 +128,25 @@ const ForgotPassword = () => {
                             required
                             error={loginFormError.email}
                         />
-                        <TextField
-                            label="Password"
-                            type={visibility ? "password" : "text"}
-                            name="password"
-                            value={loginForm.password}
-                            onChange={(e) => handleChange(e)}
-                            className={classes.textField}
-                            variant="outlined"
-                            color="secondary"
-                            fullWidth
-                            required
-                            error={loginFormError.password}
-
-                            InputProps={{
-                                endAdornment: (
-                                    <InputAdornment>
-                                        <IconButton
-                                            color="inherit"
-                                            onClick={() => setVisibility(!visibility)}
-                                        >
-                                            {visibility ? <VisibilityOffIcon /> : <VisibilityIcon />}
-                                        </IconButton>
-                                    </InputAdornment>
-                                )
-                            }}
-                        />
-                        <Typography
-                            gutterBottom
-                        >
-                            <FormControlLabel control={<Checkbox defaultChecked />} label="Remember me" />
-                            <Link to="/"> Forgot Password </Link>
-                        </Typography>
+                        <Divider />
                         <Button
                             type="submit"
                             color="primary"
                             variant="contained"
                             endIcon={<KeyboardArrowRightIcon />}
+                            fullWidth
                         >
-                            Login
+                            Email Me
                         </Button>
                         <Typography
                             gutterBottom
                             align="center"
                         >
-                            <Link to="/signup"> Don't have an account? </Link>
+                            <Link to="/signup"> I don't remember my email or phone. </Link>
                         </Typography>
                     </form>
                 </Box>
-            </Grid> */}
+            </Grid>
         </Grid>
     )
 }

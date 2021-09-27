@@ -76,6 +76,15 @@ const userReducer = (state = initState, action) => {
                 ...state,
                 error: action.error
             }
+            case TYPES.FORGOT_PASSWORD_SUCCESS:
+                return {
+                    ...state
+                }
+            case TYPES.FORGOT_PASSWORD_FAILURE:
+                return {
+                    ...state,
+                    error: action.error
+                }
         default:
             return state;
     }
