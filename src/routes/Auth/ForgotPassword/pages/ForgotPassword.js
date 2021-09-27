@@ -1,117 +1,90 @@
-import React, { useEffect, useState } from 'react'
+import React/*, { useState }*/ from 'react'
 
-import { useHistory, Link } from 'react-router-dom'
+// import { useHistory, Link } from 'react-router-dom'
 
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 
 import {
     Grid,
-    Typography,
-    TextField,
-    Checkbox,
-    Button,
-    Box,
-    InputAdornment,
-    IconButton,
-    FormControlLabel
+    // Typography,
+    // TextField,
+    // Checkbox,
+    // Button,
+    // Box,
+    // InputAdornment,
+    // IconButton,
+    // FormControlLabel
 } from '@material-ui/core'
 
-import {
-    KeyboardArrowRight as KeyboardArrowRightIcon,
-    Visibility as VisibilityIcon,
-    VisibilityOff as VisibilityOffIcon
-} from '@material-ui/icons'
+// import {
+//     KeyboardArrowRight as KeyboardArrowRightIcon,
+//     Visibility as VisibilityIcon,
+//     VisibilityOff as VisibilityOffIcon
+// } from '@material-ui/icons'
 
-import { signInLocalAction, getRememberMeAction } from '../../../../redux/auth/signIn/actions'
+// import { signInLocalAction } from '../../../../redux/auth/signIn/actions'
 
-import { useStyles } from '../../../../assets/stytes/globalStyle'
+// import { useStyles } from '../../../../assets/stytes/globalStyle'
+// import { Alert } from '@material-ui/lab'
 
-// import Google from '../../../../assets/images/icons/social-google.svg'
+const ForgotPassword = () => {
 
-const SignIn = () => {
+    // const classes = useStyles()
 
-    const classes = useStyles()
+    // const dispatch = useDispatch()
 
-    const dispatch = useDispatch()
+    // const history = useHistory()
 
-    const history = useHistory()
+    // const [loginForm, setLoginForm] = useState({
+    //     email: "",
+    //     password: ""
+    // })
 
-    const [loginForm, setLoginForm] = useState({
-        email: "",
-        password: "",
-        rememberMe: false
-    })
+    // const [loginFormError, setLoginFormError] = useState({
+    //     email: true,
+    //     password: true
+    // })
 
-    const [loginFormError, setLoginFormError] = useState({
-        email: true,
-        password: true
-    })
+    // const handleSubmit = (e) => {
+    //     e.preventDefault()
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    //     const flag = Object.values(loginFormError).find(e => e === true)
 
-        setLoginFormError(prevState => {
-            return {
-                ...prevState,
-                rememberMe: false
-            }
-        })
+    //     if (flag) {
+    //         alert('A field is empy')
+    //     } else {
+    //         dispatch(signInLocalAction
+    //             (
+    //                 loginForm.email, loginForm.password,
+    //                 () => {
+    //                     history.push('/dashboard')
+    //                 },
+    //                 (error) => {
+    //                     alert(error)
+    //                 },
+    //             ))
+    //     }
+    // }
 
-        console.log(loginFormError)
+    // const handleChange = (e) => {
+    //     const name = e.target.name
+    //     const value = e.target.value
 
-        const flag = Object.values(loginFormError).find(e => e === true)
+    //     setLoginForm({ ...loginForm, [name]: value })
 
-        if (flag) {
-            alert('A field is empy')
-        } else {
-            dispatch(signInLocalAction
-                (
-                    loginForm,
-                    () => {
-                        history.push('/dashboard')
-                    },
-                    (error) => {
-                        alert(error)
-                    },
-                ))
-        }
-    }
+    //     if (value === "") {
+    //         setLoginFormError({ ...loginFormError, [name]: true })
+    //     } else {
+    //         setLoginFormError({ ...loginFormError, [name]: false })
+    //     }
+    // }
 
-    const handleChange = (e, checked) => {
-
-        const name = e.target.name
-        let value
-
-        if (checked) {
-            value = !loginForm[name]
-        } else {
-            value = e.target.value
-        }
-
-        setLoginForm({ ...loginForm, [name]: value })
-
-        if (value === "") {
-            setLoginFormError({ ...loginFormError, [name]: true })
-        } else {
-            setLoginFormError({ ...loginFormError, [name]: false })
-        }
-    }
-
-    const [visibility, setVisibility] = useState(true)
-
-    useEffect(() => {
-        dispatch(getRememberMeAction(
-            (data) => {
-                setLoginForm(prevState => { return { ...prevState, ...data } })
-            },
-            (data2) => {
-                setLoginFormError(prevState => { return { ...prevState, ...data2 } })
-            }))
-    }, [dispatch, setLoginForm])
+    // const [visibility, setVisibility] = useState(true)
 
     return (
         <Grid container direction="column" justifyContent="flex-end" alignItems="center">
-            <Grid item xs={12} justifyContent="center">
+            ForgotPassword
+            {/* <Grid item xs={12} justifyContent="center">
                 <Box>
                     <Typography
                         variant="h5"
@@ -194,9 +167,8 @@ const SignIn = () => {
                         <Typography
                             gutterBottom
                         >
-
-                            <FormControlLabel control={<Checkbox checked={loginForm.rememberMe} name="rememberMe" onChange={(e) => handleChange(e, true)} />} label="Remember me" />
-                            <Link to="/forgot"> Forgot Password </Link>
+                            <FormControlLabel control={<Checkbox defaultChecked />} label="Remember me" />
+                            <Link to="/"> Forgot Password </Link>
                         </Typography>
                         <Button
                             type="submit"
@@ -214,11 +186,11 @@ const SignIn = () => {
                         </Typography>
                     </form>
                 </Box>
-            </Grid>
+            </Grid> */}
         </Grid>
     )
 }
 
 
 
-export default SignIn
+export default ForgotPassword

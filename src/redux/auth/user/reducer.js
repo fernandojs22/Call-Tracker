@@ -5,7 +5,9 @@ const initState = {
     id_token: null,
     authenticated: false,
     user: null,
-    error: null
+    error: null,
+    email: null,
+    rememberMe: false
 }
 
 const userReducer = (state = initState, action) => {
@@ -50,19 +52,30 @@ const userReducer = (state = initState, action) => {
                 id_token: null,
                 authenticated: false,
             }
-            case TYPES.LOGOUT_REQUEST:
-                return {
-                    ...state,
-                    loading: true
-                }
-            case TYPES.LOGOUT_SUCCESS:
-                return initState
-            case TYPES.LOGOUT_FAILURE:
-                return {
-                    ...state,
-                    loading: false,
-                    error: action.error
-                }
+        case TYPES.LOGOUT_REQUEST:
+            return {
+                ...state,
+                loading: true
+            }
+        case TYPES.LOGOUT_SUCCESS:
+            return initState
+        case TYPES.LOGOUT_FAILURE:
+            return {
+                ...state,
+                loading: false,
+                error: action.error
+            }
+        case TYPES.GET_REMEMBER_ME_SUCCESS:
+            return {
+                ...state,
+                email: action.payload.data.email,
+                rememberMe: action.payload.data.rememberMe
+            }
+        case TYPES.GET_REMEMBER_ME_FAILURE:
+            return {
+                ...state,
+                error: action.error
+            }
         default:
             return state;
     }

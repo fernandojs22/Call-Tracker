@@ -13,6 +13,7 @@ import Customers from './Customers'
 import Dashboard from './Dashboard'
 import Employees from './Employees'
 import Settings from './Settings'
+import ForgotPassword from './Auth/ForgotPassword'
 
 import { history } from '../redux/store'
 
@@ -27,7 +28,7 @@ import { theme } from '../assets/stytes/globalStyle'
 
 import { useSelector } from 'react-redux'
 
-const publicRoutes = [SignIn, SignUp]
+const publicRoutes = [SignIn, SignUp, ForgotPassword]
 const privateRoutes = [Calls, Customers, Dashboard, Employees, Settings]
 
 const RouterConfig = () => {

@@ -1,5 +1,5 @@
 import { SIGNIN as mod2 } from '../../../constants/paths'
-import SignInPage from '../../Auth/SignIn/pages/SignIn'
+import SignInPage from './pages/SignIn'
 import enhance from '../enhance'
 
 const SignInRoute = {
