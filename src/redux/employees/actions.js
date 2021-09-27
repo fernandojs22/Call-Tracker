@@ -11,7 +11,7 @@ export const fetchEmployees = () => {
     return async (dispatch) => {
         try {
             dispatch({ type: types.FETCH_EMPLOYEES_REQUEST })
-            await axios.get(`${databaseAPI}/employees`, { params: { secret_token: token }} )
+            await axios.get(`${databaseAPI}/employees`, { headers: {'Authorization': `Bearer ${token}` }} )
                 .then(responde => {
                     dispatch({
                         type: types.FETCH_EMPLOYEES_SUCCESS,
@@ -74,7 +74,7 @@ export const putEmployee = (employee, onSuccess, onError) => {
     return async (dispatch) => {
         try {
             dispatch({ type: types.PUT_EMPLOYEE_REQUEST })
-            axios.put(`${databaseAPI}/employees`, employee, { params: { secret_token: token, _id: employee._id }})
+            axios.put(`${databaseAPI}/employees`, employee, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
                 .then(data => {
                     dispatch({
                         type: types.PUT_EMPLOYEE_SUCCESS,
@@ -110,7 +110,7 @@ export const postEmployee = (employee, onSuccess, onError)  => {
     return async (dispatch) => {
         try {
             dispatch({ type: types.POST_EMPLOYEE_REQUEST })
-            axios.post(`${databaseAPI}/employees`, data, { params: { secret_token: token, _id: employee._id }})
+            axios.post(`${databaseAPI}/employees`, data, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
                 .then(data => {
                     dispatch({
                         type: types.POST_EMPLOYEE_SUCCESS,
@@ -143,7 +143,7 @@ export const deleteEmployee = (employee, onSuccess, onError) => {
     return async (dispatch) => {
         try {
             dispatch({ type: types.DELETE_EMPLOYEE_REQUEST })
-            axios.delete(`${databaseAPI}/employees`, { params: { secret_token: token, _id: employee._id }})
+            axios.delete(`${databaseAPI}/employees`, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
                 .then(data => {
                     dispatch({
                         type: types.DELETE_EMPLOYEE_SUCCESS,
