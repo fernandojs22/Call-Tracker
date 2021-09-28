@@ -2,7 +2,7 @@ import axios from 'axios'
 import { types } from './types'
 
 // const fakeAPI = process.env.REACT_APP_FAKE_API_URL
-const databaseAPI = process.env.REACT_APP_FAKE_AUTH_API_URL
+const databaseAPI = process.env.REACT_APP_DATASTORE_API_URL
 
 export const fetchEmployees = () => {
     

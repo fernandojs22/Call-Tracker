@@ -1,5 +1,5 @@
 import { TYPES } from '../types'
-const authenticationAPI = process.env.REACT_APP_FAKE_AUTH_API_URL
+const authenticationAPI = process.env.REACT_APP_AUTH_API_URL
 
 export const signOutAction = (done) => {
     return async function (dispatch) {
