@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { TYPES } from '../types'
 import { setUserAction } from '../user/actions'
-const authenticationAPI = process.env.REACT_APP_FAKE_AUTH_API_URL
+const authenticationAPI = process.env.REACT_APP_AUTH_API_URL
 
 export const setRememberMeAction = (past, rememberMe, email) => {
     return async function (dispatch) {
