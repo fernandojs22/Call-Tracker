@@ -49,11 +49,11 @@ const ForgotPassword = () => {
         if (flag) {
             alert('A field is empy')
         } else {
-            alert('dispatch')
             dispatch(forgotPasswordAction
                 (
                     loginForm.email,
                     () => {
+                        alert("Email was sent")
                         history.push('/')
                     },
                     (error) => {

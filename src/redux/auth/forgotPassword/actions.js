@@ -6,7 +6,7 @@ export const forgotPasswordAction = (email, onSuccess, onError) => {
 
     return async function (dispatch) {
         try {
-            axios.post(`${authenticationAPI}/reset`, { email })
+            axios.post(`${authenticationAPI}/reset`, {}, { params: { email }})
                 .then(response => {
                     dispatch({
                         type: TYPES.FORGOT_PASSWORD_SUCCESS
