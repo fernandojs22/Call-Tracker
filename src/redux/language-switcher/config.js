@@ -1,7 +1,9 @@
 import language from '../../config/laguage.config'
 
-import esLang from '../../assets/images/flag/spain.svg'
-import enLang from '../../assets/images/flag/us.svg'
+import {
+    IconFlagES as esLang,
+    IconFlagUS as enLang
+} from 'material-ui-flags';
 
 const config = {
     defaultLanguage: language,

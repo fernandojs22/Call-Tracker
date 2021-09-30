@@ -4,8 +4,7 @@ import {
     Typography,
     Avatar,
     IconButton,
-    Badge,
-    // SvgIcon
+    Badge
 } from '@material-ui/core'
 import {
     Menu as MenuIcon,
@@ -56,7 +55,7 @@ const Topbar = ({ classes }) => {
                 </IconButton>
                 <Typography>
                     {config.options.map(option => {
-                        const { languageId, icon } = option;
+                        const { languageId, icon: Icon } = option;
 
                         return (
                             <IconButton
@@ -64,7 +63,7 @@ const Topbar = ({ classes }) => {
                                 key={languageId}
                                 onClick={() => dispatch(changeLanguage(languageId))}
                             >
-                                <img src={icon} alt="flag" width="3%" />
+                                <Icon />
                             </IconButton>
                         )
                     })}
