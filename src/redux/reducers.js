@@ -5,10 +5,12 @@ import storage from 'redux-persist/lib/storage'
 
 import Employees from './employees/reducer'
 import User from './auth/user/reducer'
+import LanguageSwitcher from './language-switcher/reducer'
 
 const rootReducer = (history) => combineReducers({
     Employees,
     User,
+    LanguageSwitcher,
     router: connectRouter(history)
 })
 
