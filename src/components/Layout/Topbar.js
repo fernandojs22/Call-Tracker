@@ -11,11 +11,15 @@ import {
     NotificationsOutlined as NotificationsOutlinedIcon
 } from '@material-ui/icons'
 
+import { useDispatch } from 'react-redux'
+
+import { changeLanguage } from '../../redux/language-switcher/actions'
+
+import config from '../../redux/language-switcher/config'
+
 const Topbar = ({ classes }) => {
 
-    const user = {
-        userName: 'Mario'
-    }
+    const dispatch = useDispatch()
 
     return (
         <AppBar
@@ -46,11 +50,23 @@ const Topbar = ({ classes }) => {
                         color="error"
                         badgeContent={99}
                     >
-                         <NotificationsOutlinedIcon />
+                        <NotificationsOutlinedIcon />
                     </Badge>
                 </IconButton>
                 <Typography>
-                    {user.userName}
+                    {config.options.map(option => {
+                        const { languageId, icon: Icon } = option;
+
+                        return (
+                            <IconButton
+                                color="inherit"
+                                key={languageId}
+                                onClick={() => dispatch(changeLanguage(languageId))}
+                            >
+                                <Icon />
+                            </IconButton>
+                        )
+                    })}
                 </Typography>
                 <Avatar
                     src='/user.jpeg'

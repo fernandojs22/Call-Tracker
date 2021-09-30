@@ -64,8 +64,6 @@ const EmployeeCard = ({ classes, employee }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        console.log(buttonName)
-
         if (buttonName === 'UPDATE') {
             dispatch(putEmployee(
                 employeeState,

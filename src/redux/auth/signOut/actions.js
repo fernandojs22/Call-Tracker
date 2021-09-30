@@ -7,6 +7,7 @@ export const signOutAction = (done) => {
             dispatch({ type: TYPES.LOGOUT_REQUEST })
             fetch(`${authenticationAPI}/logout?_method=DELETE`)
                 .then(() => {
+                    localStorage.removeItem('token')
                     dispatch({
                         type: TYPES.LOGOUT_SUCCESS
                     })

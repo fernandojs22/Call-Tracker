@@ -30,8 +30,9 @@ import {
 import { useDispatch } from 'react-redux'
 import { getEmployee } from '../../../redux/employees/actions'
 
-
 import EmployeeCard from './EmployeeCard'
+
+import IntlMessages from '../../../components/Utils/IntlMessages'
 
 const EmployeesList = ({ classes, listFields }) => {
 
@@ -72,7 +73,7 @@ const EmployeesList = ({ classes, listFields }) => {
                     color="primary"
                     onClick={() => employeeCard({})}
                 >
-                    Create Employee
+                    <IntlMessages id="employees.create-employee" />
                 </Button>
             </Box>
             <Card className={classes.card}>

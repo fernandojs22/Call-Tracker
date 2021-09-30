@@ -57,8 +57,6 @@ const SignIn = () => {
             }
         })
 
-        console.log(loginFormError)
-
         const flag = Object.values(loginFormError).find(e => e === true)
 
         if (flag) {
