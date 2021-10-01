@@ -92,7 +92,7 @@ const EmployeesList = ({ classes, listFields }) => {
                             </InputAdornment>
                         )
                     }}
-                    placeholder="Search customer"
+                    label={<IntlMessages id="generic.search" />}
                     variant="outlined"
                 />
             </Card>
@@ -103,13 +103,13 @@ const EmployeesList = ({ classes, listFields }) => {
                             {listFields.map((field) => {
                                 if (field.field !== 'avatar') {
                                     return (
-                                        <TableCell key={field.field}> {field.label} </TableCell>
+                                        <TableCell key={field.field}><IntlMessages id={field.label} /></TableCell>
                                     )
                                 } else {
                                     return <></>
                                 }
                             })}
-                            <TableCell> Action </TableCell>
+                            <TableCell> <IntlMessages id="generic.action" /> </TableCell>
                         </TableRow>
                     </TableHead>
                     <TableBody>

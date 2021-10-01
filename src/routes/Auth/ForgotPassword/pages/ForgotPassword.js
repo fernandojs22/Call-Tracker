@@ -25,6 +25,8 @@ import { forgotPasswordAction } from '../../../../redux/auth/forgotPassword/acti
 
 import { useStyles } from '../../../../assets/stytes/globalStyle'
 
+import IntlMessages from '../../../../components/Utils/IntlMessages'
+
 const ForgotPassword = () => {
 
     const classes = useStyles()
@@ -87,14 +89,14 @@ const ForgotPassword = () => {
                         gutterBottom
                         align="center"
                     >
-                        Forgot Password
+                        <IntlMessages id="forgot.password.forgot-password" />
                     </Typography>
                     <Typography
                         color="textSecondary"
                         gutterBottom
                         align="center"
                     >
-                        How would you like to reset your password?
+                        <IntlMessages id="forgot.password.how-would-you-like-to-reset-your-password" />
                     </Typography>
                     <Typography align="center">
                         <FormControl component="fieldset">
@@ -102,8 +104,8 @@ const ForgotPassword = () => {
                                 defaultValue="email"
                                 name="reset-pwd-methods"
                             >
-                                <FormControlLabel value="email" control={<Radio />} label="Email" />
-                                <FormControlLabel value="sms" control={<Radio />} label="Text Message (SMS)" />
+                                <FormControlLabel value="email" control={<Radio />} label={<IntlMessages id="generic.email" />} />
+                                <FormControlLabel value="sms" control={<Radio />} label={<IntlMessages id="forgot.password.text-message-sms" />} />
                             </RadioGroup>
                         </FormControl>
                     </Typography>
@@ -112,11 +114,11 @@ const ForgotPassword = () => {
                         gutterBottom
                         align="center"
                     >
-                        We will send you an email with instructions on how to reset your password.
+                        <IntlMessages id="forgot.password.we-will-send-you-an-email-with-instructions-on-how-to-reset-your-password" />
                     </Typography>
                     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
                         <TextField
-                            label="Email"
+                            label={<IntlMessages id="generic.email" />}
                             type="email"
                             name="email"
                             value={loginForm.email}
@@ -136,13 +138,13 @@ const ForgotPassword = () => {
                             endIcon={<KeyboardArrowRightIcon />}
                             fullWidth
                         >
-                            Email Me
+                            <IntlMessages id="forgot.password.send-me" />
                         </Button>
                         <Typography
                             gutterBottom
                             align="center"
                         >
-                            <Link to="/signup"> I don't remember my email or phone. </Link>
+                            <Link to="/signup"> <IntlMessages id="forgot.password.i-dont-remember-my-email-or-phone" /> </Link>
                         </Typography>
                     </form>
                 </Box>

@@ -26,7 +26,7 @@ import { signInLocalAction, getRememberMeAction } from '../../../../redux/auth/s
 
 import { useStyles } from '../../../../assets/stytes/globalStyle'
 
-// import Google from '../../../../assets/images/icons/social-google.svg'
+import IntlMessages from '../../../../components/Utils/IntlMessages'
 
 const SignIn = () => {
 
@@ -118,14 +118,14 @@ const SignIn = () => {
                         gutterBottom
                         align="center"
                     >
-                        Hi, Welcome Back
+                        <IntlMessages id="login.hi-welcome-back" />
                     </Typography>
                     <Typography
                         color="textSecondary"
                         gutterBottom
                         align="center"
                     >
-                        Enter your credentials to continue
+                        <IntlMessages id="generic.enter-your-credentials-to-continue" />
                     </Typography>
                     <Button
                         variant="text"
@@ -133,25 +133,25 @@ const SignIn = () => {
                         startIcon={<KeyboardArrowRightIcon />}
                         disableElevation
                     >
-                        Sign In With Google
+                        <IntlMessages id="login.sign-in-with-google" />
                     </Button>
                     <Typography
                         color="textSecondary"
                         gutterBottom
                         align="center"
                     >
-                        OR
+                        <IntlMessages id="generic.or" />
                     </Typography>
                     <Typography
                         color="textSecondary"
                         gutterBottom
                         align="center"
                     >
-                        Sign in with Email address
+                        <IntlMessages id="login.sign-in-email-address" />
                     </Typography>
                     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
                         <TextField
-                            label="Email"
+                            label={<IntlMessages id="generic.email" />}
                             type="email"
                             name="email"
                             value={loginForm.email}
@@ -164,7 +164,7 @@ const SignIn = () => {
                             error={loginFormError.email}
                         />
                         <TextField
-                            label="Password"
+                            label={<IntlMessages id="generic.password" />}
                             type={visibility ? "password" : "text"}
                             name="password"
                             value={loginForm.password}
@@ -193,8 +193,8 @@ const SignIn = () => {
                             gutterBottom
                         >
 
-                            <FormControlLabel control={<Checkbox checked={loginForm.rememberMe} name="rememberMe" onChange={(e) => handleChange(e, true)} />} label="Remember me" />
-                            <Link to="/forgot"> Forgot Password </Link>
+                            <FormControlLabel control={<Checkbox checked={loginForm.rememberMe} name="rememberMe" onChange={(e) => handleChange(e, true)} />} label={<IntlMessages id="login.remember-me" />} />
+                            <Link to="/forgot"> <IntlMessages id="login.forgot-password" /> </Link>
                         </Typography>
                         <Button
                             type="submit"
@@ -202,13 +202,13 @@ const SignIn = () => {
                             variant="contained"
                             endIcon={<KeyboardArrowRightIcon />}
                         >
-                            Login
+                            <IntlMessages id="login.login" />
                         </Button>
                         <Typography
                             gutterBottom
                             align="center"
                         >
-                            <Link to="/signup"> Don't have an account? </Link>
+                            <Link to="/signup"> <IntlMessages id="login.dont-have-an-account?" /> </Link>
                         </Typography>
                     </form>
                 </Box>

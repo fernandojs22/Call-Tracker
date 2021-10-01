@@ -17,6 +17,8 @@ import { changeLanguage } from '../../redux/language-switcher/actions'
 
 import config from '../../redux/language-switcher/config'
 
+import IntlMessages from '../Utils/IntlMessages'
+
 const Topbar = ({ classes }) => {
 
     const dispatch = useDispatch()
@@ -39,7 +41,7 @@ const Topbar = ({ classes }) => {
                     component="h1"
                     className={classes.appbarTitle}
                 >
-                    Call List
+                    <IntlMessages id="topbar.calls-list" /> 
                 </Typography>
                 <IconButton
                     color="inherit"
