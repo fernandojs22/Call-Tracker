@@ -19,6 +19,8 @@ import { signOutAction } from '../../redux/auth/signOut/actions'
 import { options } from '../../constants/options'
 import Logo from '../../components/Logo'
 
+import IntlMessages from '../Utils/IntlMessages'
+
 const Navbar = ({ classes }) => {
 
     const dispatch = useDispatch()
@@ -58,7 +60,7 @@ const Navbar = ({ classes }) => {
                         onClick={() => dispatch(signOutAction(() => history.push('/')))}
                     >
                         <ListItemIcon><PowerSettingsNewIcon /></ListItemIcon>
-                        <ListItemText>{'Logout'}</ListItemText>
+                        <ListItemText><IntlMessages id="navbar.logout" /></ListItemText>
                     </ListItem>
             </List>
         </Drawer>

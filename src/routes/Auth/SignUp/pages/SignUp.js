@@ -26,6 +26,8 @@ import { signUpLocalAction } from '../../../../redux/auth/signUp/actions'
 
 import { useStyles } from '../../../../assets/stytes/globalStyle'
 
+import IntlMessages from '../../../../components/Utils/IntlMessages'
+
 const SignUp = () => {
 
     const [visibility, setVisibility] = useState(true)
@@ -111,14 +113,14 @@ const SignUp = () => {
                         gutterBottom
                         align="center"
                     >
-                        Sign Up
+                        <IntlMessages id="register.sign-up" />
                     </Typography>
                     <Typography
                         color="textSecondary"
                         gutterBottom
                         align="center"
                     >
-                        Enter your credentials to continue
+                        <IntlMessages id="generic.enter-your-credentials-to-continue" />
                     </Typography>
                     <Button
                         variant="text"
@@ -126,27 +128,27 @@ const SignUp = () => {
                         startIcon={<KeyboardArrowRightIcon />}
                         disableElevation
                     >
-                        Sign Up With Google
+                        <IntlMessages id="register.sign-up-with-google" />
                     </Button>
                     <Typography
                         color="textSecondary"
                         gutterBottom
                         align="center"
                     >
-                        OR
+                        <IntlMessages id="generic.or" />
                     </Typography>
                     <Typography
                         color="textSecondary"
                         gutterBottom
                         align="center"
                     >
-                        Sign Up with Email address
+                        <IntlMessages id="register.sign-up-email-address" />
                     </Typography>
                     <form noValidate autoComplete="off" onSubmit={handleSubmit}>
                         <Grid container>
                             <Grid item xs={6}>
                                 <TextField
-                                    label="First Name"
+                                    label={<IntlMessages id="generic.firt-name" />}
                                     type="text"
                                     name="firstName"
                                     value={registerForm.firstName}
@@ -161,7 +163,7 @@ const SignUp = () => {
                             </Grid>
                             <Grid item xs={6}>
                                 <TextField
-                                    label="Last Name"
+                                    label={<IntlMessages id="generic.last-name" />}
                                     type="text"
                                     name="lastName"
                                     value={registerForm.lastName}
@@ -176,7 +178,7 @@ const SignUp = () => {
                             </Grid>
                         </Grid>
                         <TextField
-                            label="Email"
+                            label={<IntlMessages id="generic.email" />}
                             type="email"
                             name="email"
                             value={registerForm.email}
@@ -189,7 +191,7 @@ const SignUp = () => {
                             error={registerFormError.email}
                         />
                         <TextField
-                            label="Password"
+                            label={<IntlMessages id="generic.password" />}
                             type={visibility ? "password" : "text"}
                             name="password"
                             value={registerForm.password}
@@ -217,7 +219,7 @@ const SignUp = () => {
                         <Typography
                             gutterBottom
                         >
-                            <FormControlLabel control={<Checkbox value={registerForm.agree} name="agree" onChange={(e) => handleChange(e, true)}/>} label="Agree with  Terms & Condition." />
+                            <FormControlLabel control={<Checkbox value={registerForm.agree} name="agree" onChange={(e) => handleChange(e, true)}/>} label={<IntlMessages id="register.agree-to-the-terms-conditions" />} />
                         </Typography>
                         <Button
                             type="submit"
@@ -225,13 +227,13 @@ const SignUp = () => {
                             variant="contained"
                             endIcon={<KeyboardArrowRightIcon />}
                         >
-                            Register
+                            <IntlMessages id="register.register" />
                         </Button>
                         <Typography
                             gutterBottom
                             align="center"
                         >
-                            <Link to="/"> Have an account? </Link>
+                            <Link to="/"> <IntlMessages id="register.dont-have-an-account?" /> </Link>
                         </Typography>
                     </form>
                 </Box>

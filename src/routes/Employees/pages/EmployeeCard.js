@@ -29,6 +29,8 @@ import EmployeesList from './EmployeesList'
 
 import AvatarShortBox from '../../../components/Avatar/AvatarShortBox'
 
+import IntlMessages from '../../../components/Utils/IntlMessages'
+
 const user = {
     avatar: '/static/images/avatars/avatar_6.png',
     city: 'Los Angeles',
@@ -141,7 +143,7 @@ const EmployeeCard = ({ classes, employee }) => {
                                                             key={field.field}
                                                             variant="outlined"
                                                             fullWidth
-                                                            label={field.label}
+                                                            label={<IntlMessages id={field.label} />}
                                                             multiline={field.multiline}
                                                             minRows={6}
                                                             required={field.required}
