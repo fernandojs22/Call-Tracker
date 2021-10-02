@@ -1,6 +1,7 @@
-# Calls Tracker System
+# Calls Tracker
 
-Node.js, Material UI, Axios, HTTP Bearer Authentication, API Endpoints is request to Mongo Database
+Calls Tracker System is a monolithic application that support multilanguages build with React, Node.js, Material UI, Axios, HTTP Bearer Authentication, API Endpoints is request to Mongo Database.
+
 
 ## Development
 
@@ -15,4 +16,15 @@ You will only need to run this command when dependencies change in [package.json
 ```
 npm install
 ```
+
+### This is how look when you
+
+![image](https://user-images.githubusercontent.com/16330953/135732920-8eb87c01-6b4b-4213-9909-145e37d0bfa9.png)
+
+![image](https://user-images.githubusercontent.com/16330953/135732929-a5439a71-cd0b-4bd4-b74f-4f0616b45c6d.png)
+
+![image](https://user-images.githubusercontent.com/16330953/135732946-910c2033-6e60-403d-a925-9b6138df5c1f.png)
+
+![image](https://user-images.githubusercontent.com/16330953/135732958-4dada371-efa8-4941-9d33-4957e80adbb6.png)
+
 
