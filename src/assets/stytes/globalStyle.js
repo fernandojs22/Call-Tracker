@@ -69,7 +69,7 @@ export const useStyles = makeStyles((theme) => {
         submitBtn: {
             marginTop: 10,
             marginRight: 15,
-            width: 120
+            width: 215
         },
         avatarCard: {
             width: theme.spacing(12),

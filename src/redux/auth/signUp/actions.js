@@ -6,7 +6,7 @@ export const signUpLocalAction = (user, onSuccess, onError) => {
     return async function(dispatch) {
         try {
             dispatch({ type: TYPES.REGISTER_REQUEST })
-            axios.post(`${authenticationAPI}/register`,user)
+            await axios.post(`${authenticationAPI}/register`,user)
             .then(response => {
                 dispatch({
                     type: TYPES.REGISTER_SUCCESS,

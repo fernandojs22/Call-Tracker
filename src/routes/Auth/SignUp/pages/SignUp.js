@@ -56,8 +56,6 @@ const SignUp = () => {
 
     const handleSubmit = (e) => {
 
-        console.log(registerForm)
-
         e.preventDefault()
 
         const flag = Object.values(registerFormError).find(e => e === true)

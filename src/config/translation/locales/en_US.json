@@ -7,6 +7,13 @@
     "generic.last-name": "Last Name",
     "generic.search": "Search",
     "generic.action": "Action",
+    "generic.the-information-can-be-edited": "The information can be edited",
+
+    "buttons.update": "Update",
+    "buttons.create": "Create",
+    "buttons.delete": "Delete",
+    "buttons.cancel": "Cancel",
+    "buttons.change-password": "Change Password",
 
     "topbar.calls-list":"Calls List",   
 
@@ -39,8 +46,8 @@
     "navbar.settings":"Settings",
     "navbar.logout":"Logout",
 
+    "employees.id": "Id",
     "employees.create-employee": "Create Employee",
-    "employees.id":"Id",
     "employees.first-name":"First name",
     "employees.last-name":"Last Name",
     "employees.job-title":"Job Title",
@@ -54,5 +61,20 @@
     "employees.state-province":"State/Province",
     "employees.zip-postal-code":"Zip/Postal Code",
     "employees.notes":"Notes",
-    "employees.avatar":"Avatar"
+    "employees.avatar":"Avatar",
+    "employees.session-personal":"PERSONAL",
+    "employees.session-contact":"CONTACT",
+    "employees.session-address":"ADDRESS",
+    "employees.session-notes":"NOTES",
+
+    "user.id":"Id",    
+    "user.first-name":"First Name",
+    "user.last-name":"Last Name",
+    "user.user-name":"User Name",
+    "user.age":"Age",
+    "user.password":"Current Password",
+    "user.new-password":"New Password",
+    "user.verify-new-password":"Verify New Password",
+    "user.session-personal":"PERSONAL",
+    "user.session-change-password":"CHAMGE PASSWORD"
 }

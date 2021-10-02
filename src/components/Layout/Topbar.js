@@ -19,9 +19,14 @@ import config from '../../redux/language-switcher/config'
 
 import IntlMessages from '../Utils/IntlMessages'
 
+import { useHistory } from 'react-router'
+
+import { PROFILE } from '../../constants/paths'
+
 const Topbar = ({ classes }) => {
 
     const dispatch = useDispatch()
+    const history = useHistory()
 
     return (
         <AppBar
@@ -41,7 +46,7 @@ const Topbar = ({ classes }) => {
                     component="h1"
                     className={classes.appbarTitle}
                 >
-                    <IntlMessages id="topbar.calls-list" /> 
+                    <IntlMessages id="topbar.calls-list" />
                 </Typography>
                 <IconButton
                     color="inherit"
@@ -70,10 +75,17 @@ const Topbar = ({ classes }) => {
                         )
                     })}
                 </Typography>
-                <Avatar
-                    src='/user.jpeg'
-                    className={classes.avatar}
-                />
+                <IconButton
+                    color="inherit"
+                    className={classes.menuButton}
+                    onClick={() => history.push(PROFILE.PATH)}
+                >
+                    <Avatar
+                        src='/user.jpeg'
+                        className={classes.avatar}
+                    />
+                </IconButton>
+
 
             </Toolbar>
         </AppBar>

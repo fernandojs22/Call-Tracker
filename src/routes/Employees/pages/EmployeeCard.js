@@ -43,9 +43,9 @@ const user = {
 const EmployeeCard = ({ classes, employee }) => {
 
     const [employeeState, setEmployeeState] = useState(employee)
-    
+
     const handleChange = (e) => {
-        setEmployeeState(prevState => { return { ...prevState, [e.target.name]: e.target.value }})
+        setEmployeeState(prevState => { return { ...prevState, [e.target.name]: e.target.value } })
     }
 
     const dispatch = useDispatch()
@@ -66,7 +66,7 @@ const EmployeeCard = ({ classes, employee }) => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        if (buttonName === 'UPDATE') {
+        if (buttonName === 'update') {
             dispatch(putEmployee(
                 employeeState,
                 () => {
@@ -77,7 +77,7 @@ const EmployeeCard = ({ classes, employee }) => {
                 }
             ))
 
-        } else if (buttonName === 'CREATE') {
+        } else if (buttonName === 'create') {
             dispatch(postEmployee(
                 employeeState,
                 () => {
@@ -87,7 +87,7 @@ const EmployeeCard = ({ classes, employee }) => {
 
                 }
             ))
-        } else if (buttonName === 'DELETE') {
+        } else if (buttonName === 'delete') {
             dispatch(deleteEmployee(
                 employeeState,
                 () => {
@@ -131,29 +131,33 @@ const EmployeeCard = ({ classes, employee }) => {
                                                 {`${session}`[0].toUpperCase()}
                                             </Avatar>
                                         }
-                                        title={`${session}`.toUpperCase()}
-                                        subheader="The information can be edited"
+                                        title={(<IntlMessages id={`employees.session-${session}`} />)}
+                                        subheader={<IntlMessages id="generic.the-information-can-be-edited" />}
                                     />
                                     <CardContent>
                                         <Typography component="span" variant="body2">
                                             {
                                                 sessions[`${session}`].map((field) => {
-                                                    return (
-                                                        <TextField
-                                                            key={field.field}
-                                                            variant="outlined"
-                                                            fullWidth
-                                                            label={<IntlMessages id={field.label} />}
-                                                            multiline={field.multiline}
-                                                            minRows={6}
-                                                            required={field.required}
-                                                            className={classes.field}
-                                                            id={field.field}
-                                                            name={field.field}
-                                                            value={employeeState[field.field]}
-                                                            onChange={(e) => handleChange(e)}
-                                                        />
-                                                    )
+                                                    if (field.display) {
+                                                        return (
+                                                            <TextField
+                                                                key={field.field}
+                                                                variant="outlined"
+                                                                fullWidth
+                                                                label={<IntlMessages id={field.label} />}
+                                                                multiline={field.multiline}
+                                                                minRows={6}
+                                                                required={field.required}
+                                                                className={classes.field}
+                                                                id={field.field}
+                                                                name={field.field}
+                                                                value={employeeState[field.field]}
+                                                                onChange={(e) => handleChange(e)}
+                                                            />
+                                                        )
+                                                    } else {
+                                                        return <></>
+                                                    }
                                                 })
                                             }
                                         </Typography>
@@ -184,10 +188,9 @@ const EmployeeCard = ({ classes, employee }) => {
                                     color="inherit"
                                     className={classes.submitBtn}
                                     endIcon={<KeyboardArrowRightIcon />}
-                                    value="update"
-                                    onClick={(e) => setButtonName(e.target.innerText)}
+                                    onClick={(e) => setButtonName('update')}
                                 >
-                                    Update
+                                    <IntlMessages id="buttons.update" />
                                 </Button>
                                 <Button
                                     variant="contained"
@@ -195,10 +198,9 @@ const EmployeeCard = ({ classes, employee }) => {
                                     color="primary"
                                     className={classes.submitBtn}
                                     endIcon={<KeyboardArrowRightIcon />}
-                                    value="create"
-                                    onClick={(e) => setButtonName(e.target.innerText)}
+                                    onClick={(e) => setButtonName('create')}
                                 >
-                                    Create
+                                    <IntlMessages id="buttons.create" />
                                 </Button>
                                 <Button
                                     variant="contained"
@@ -208,7 +210,7 @@ const EmployeeCard = ({ classes, employee }) => {
                                     id="cancel"
                                     onClick={(e) => employeesList(e)}
                                 >
-                                    Cancel
+                                    <IntlMessages id="buttons.cancel" />
                                 </Button>
                                 <Button
                                     variant="contained"
@@ -216,10 +218,9 @@ const EmployeeCard = ({ classes, employee }) => {
                                     type="submit"
                                     className={classes.submitBtn}
                                     endIcon={<CancelIcon />}
-                                    id="delete"
-                                    onClick={(e) => setButtonName(e.target.innerText)}
+                                    onClick={(e) => setButtonName('delete')}
                                 >
-                                    Delete
+                                    <IntlMessages id="buttons.delete" />
                                 </Button>
                             </Grid>
                         </Grid>

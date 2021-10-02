@@ -1,7 +1,6 @@
 import axios from 'axios'
 import { types } from './types'
 
-// const fakeAPI = process.env.REACT_APP_FAKE_API_URL
 const databaseAPI = process.env.REACT_APP_DATASTORE_API_URL
 
 export const fetchEmployees = () => {
@@ -74,7 +73,7 @@ export const putEmployee = (employee, onSuccess, onError) => {
     return async (dispatch) => {
         try {
             dispatch({ type: types.PUT_EMPLOYEE_REQUEST })
-            axios.put(`${databaseAPI}/employees`, employee, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
+            await axios.put(`${databaseAPI}/employees`, employee, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
                 .then(data => {
                     dispatch({
                         type: types.PUT_EMPLOYEE_SUCCESS,
@@ -110,7 +109,7 @@ export const postEmployee = (employee, onSuccess, onError)  => {
     return async (dispatch) => {
         try {
             dispatch({ type: types.POST_EMPLOYEE_REQUEST })
-            axios.post(`${databaseAPI}/employees`, data, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
+            await axios.post(`${databaseAPI}/employees`, data, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
                 .then(data => {
                     dispatch({
                         type: types.POST_EMPLOYEE_SUCCESS,
@@ -143,7 +142,7 @@ export const deleteEmployee = (employee, onSuccess, onError) => {
     return async (dispatch) => {
         try {
             dispatch({ type: types.DELETE_EMPLOYEE_REQUEST })
-            axios.delete(`${databaseAPI}/employees`, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
+            await axios.delete(`${databaseAPI}/employees`, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
                 .then(data => {
                     dispatch({
                         type: types.DELETE_EMPLOYEE_SUCCESS,

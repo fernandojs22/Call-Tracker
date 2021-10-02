@@ -2,65 +2,66 @@ export const sessions = {
     avatar: [
         {
             field: 'avatar',
-            label: 'Avatar',
+            label: "user.avatar",
             variant: 'Avatar',
-            listResultId: 1
+            display: true
         },
     ],
     personal:
         [
             {
                 field: '_id',
-                label: 'Id',
+                label: "user.id",
                 variant: 'TextField',
                 required: true,
-                listResultId: 2
+                display: false
             },
             {
                 field: 'firstName',
-                label: 'First Name',
+                label: "user.first-name",
                 variant: 'TextField',
                 required: true,
-                listResultId: 3
+                display: true
             },
             {
                 field: 'lastName',
-                label: 'Last Name',
-                variant: 'TextField',
-                required: true
-            },
-            {
-                field: 'jobTitle',
-                label: 'Job Title',
+                label: "user.last-name",
                 variant: 'TextField',
                 required: true,
-                listResultId: 4
+                display: true
             },
             {
-                field: 'email',
-                label: 'Email',
+                field: 'userName',
+                label: "user.user-name",
                 variant: 'TextField',
                 required: true,
-                listResultId: 5
+                display: true
             },
-        ],
+            {
+                field: 'age',
+                label: "user.age",
+                variant: 'TextField',
+                required: true,
+                display: true
+            },
+        ]/*,
     contact: [
         {
             field: 'workPhone',
-            label: 'Work Phone',
+            label: "employees.work-phone",
             variant: 'TextField',
             required: true,
             listResultId: 6
         },
         {
             field: 'homePhone',
-            label: 'Home Phone',
+            label: "employees.home-phone",
             variant: 'TextField',
             required: false
         },
         {
             field: 'mobilePhone',
-            label: 'Mobile Phone',
+            label: "employees.mobile-phone",
             variant: 'TextField',
             required: true
         },
@@ -68,32 +69,32 @@ export const sessions = {
     address: [
         {
             field: 'country',
-            label: 'Country',
+            label: "employees.country",
             variant: 'TextField',
             required: true,
             listResultId: 7
         },
         {
             field: 'street',
-            label: 'Street',
+            label: "employees.street",
             variant: 'TextField',
             required: true
         },
         {
             field: 'city',
-            label: 'City',
+            label: "employees.city",
             variant: 'TextField',
             required: true
         },
         {
             field: 'state',
-            label: 'State/Province',
+            label: "employees.state-province",
             variant: 'TextField',
             required: true
         },
         {
             field: 'zipCode',
-            label: 'Zip/Postal Code',
+            label: "employees.zip-postal-code",
             variant: 'string',
             required: true
         }
@@ -101,10 +102,10 @@ export const sessions = {
     notes: [
         {
             field: 'notes',
-            label: 'Notes',
+            label: "employees.notes",
             variant: 'TextField',
             required: false,
             multiline: true
         }
-    ]
+    ]*/
 }

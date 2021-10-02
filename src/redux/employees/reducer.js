@@ -3,7 +3,6 @@ import { types } from './types'
 const initState = {
     loading: false,
     employees: [],
-    employees2: [],
     employee: {},
     error: ``
 }
@@ -20,7 +19,6 @@ const employeesReducer = (state = initState, action) => {
                 ...state,
                 loading: false,
                 employees: action.payload.data,
-                employees2: action.payload.data,
                 error: ``
             }
         case types.FETCH_EMPLOYEES_FAILURE:
