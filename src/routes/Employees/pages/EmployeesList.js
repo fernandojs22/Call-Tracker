@@ -38,7 +38,7 @@ const EmployeesList = ({ classes, listFields }) => {
 
     const dispatch = useDispatch()
 
-    const { employees, employees2 } = useSelector(state => state.Employees)
+    const { employees } = useSelector(state => state.Employees)
 
     const [employeesResult, setEmployeesResult] = useState(employees)
     const [employee, setEmployee] = useState({})
@@ -119,14 +119,14 @@ const EmployeesList = ({ classes, listFields }) => {
                             return (
                                 <TableRow key={row._id}>
                                     {columns.map((colum) => {
-                                        if (colum === 'id') {
-                                            return <Checkbox key={colum} />
+                                        if (colum === '_id') {
+                                            return <Checkbox key={colum} value={row[colum]}/>
                                         } else if (colum === 'firstName') {
                                             return <TableCell key={colum}> <Avatar src={row['avatar']} /><Typography>{row[colum]}</Typography></TableCell>
                                         } else if (colum !== 'action' && colum !== 'avatar') {
                                             return <TableCell key={colum}> <Typography>{row[colum]}</Typography> </TableCell>
                                         } else if (colum === 'action') {
-                                            return <TableCell key="action"><IconButton onClick={() => employeeCard2(employees2.filter((emp) => emp._id === row._id))}><EditIcon /></IconButton></TableCell>
+                                            return <TableCell key="action"><IconButton onClick={() => employeeCard2(employees.filter((emp) => emp._id === row._id))}><EditIcon /></IconButton></TableCell>
                                         } else {
                                             return <></>
                                         }

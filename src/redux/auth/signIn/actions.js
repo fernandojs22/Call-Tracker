@@ -37,11 +37,11 @@ export const signInLocalAction = (user, onSuccess, onError) => {
     return async function (dispatch) {
         try {
             dispatch({ type: TYPES.LOGIN_REQUEST })
-            axios.post(`${authenticationAPI}/login/local`, {
+            await axios.post(`${authenticationAPI}/login/local`, {
                 email: user.email,
                 password: user.password
             })
-                .then(response => {
+                .then(async response => {
                     dispatch({
                         type: TYPES.LOGIN_SUCCESS,
                         payload: response.data

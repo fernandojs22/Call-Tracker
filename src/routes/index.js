@@ -14,6 +14,7 @@ import Dashboard from './Dashboard'
 import Employees from './Employees'
 import Settings from './Settings'
 import ForgotPassword from './Auth/ForgotPassword'
+import Profile from './Profile'
 
 import { history } from '../redux/store'
 
@@ -29,12 +30,11 @@ import { theme } from '../assets/stytes/globalStyle'
 import { useSelector } from 'react-redux'
 
 const publicRoutes = [SignIn, SignUp, ForgotPassword]
-const privateRoutes = [Calls, Customers, Dashboard, Employees, Settings]
+const privateRoutes = [Calls, Customers, Dashboard, Employees, Settings, Profile]
 
 const RouterConfig = () => {
 
     const { authenticated } = useSelector(state => state.User)
-
 
     return (
         <ThemeProvider theme={theme}>

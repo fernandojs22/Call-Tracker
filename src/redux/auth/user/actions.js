@@ -1,30 +1,90 @@
 import axios from 'axios'
 import { TYPES } from '../types'
-// const fakeAPI = process.env.REACT_APP_FAKE_API_URL
+
+const databaseAPI = process.env.REACT_APP_DATASTORE_API_URL
 const authenticationAPI = process.env.REACT_APP_AUTH_API_URL
 
 export const setUserAction = (token) => {
-    return async function(dispatch) {
+
+    return async function (dispatch) {
         try {
             dispatch({ type: TYPES.STATE_REQUEST })
-            axios.get(`${authenticationAPI}/profile`,{params:{secret_token:token}})
-            .then(response => {
-                dispatch({
-                    type: TYPES.SET_USER_SUCCESS,
-                    payload: { data: response.data.user }
+            await axios.get(`${databaseAPI}/profile`, { headers: { 'Authorization': `Bearer ${token}` } })
+                .then(response => {
+                    dispatch({
+                        type: TYPES.SET_USER_SUCCESS,
+                        payload: { data: response.data.user }
+                    })
                 })
-            })
-            .catch(error => {
-                dispatch({
-                    type: TYPES.SET_USER_FAILURE,
-                    payload: { error: error }
+                .catch(error => {
+                    dispatch({
+                        type: TYPES.SET_USER_FAILURE,
+                        payload: { error: error }
+                    })
                 })
-            })
         } catch (error) {
             dispatch({
                 type: TYPES.SET_USER_FAILURE,
                 payload: { error: error }
             })
+        }
+    }
+}
+
+export const putUser = (user, onSuccess, onError) => {
+
+    const token = localStorage.getItem('token')
+
+    return async (dispatch) => {
+        try {
+            dispatch({ type: TYPES.PUT_USER_REQUEST })
+            await axios.put(`${databaseAPI}/profile`, user, { headers: { 'Authorization': `Bearer ${token}` } })
+                .then(data => {
+                    dispatch({
+                        type: TYPES.PUT_USER_SUCCESS,
+                        payload: { data: data }
+                    })
+                    dispatch(setUserAction(token))
+                    onSuccess()
+                })
+                .catch(error => {
+                    dispatch({
+                        type: TYPES.PUT_USER_FAILURE,
+                        payload: { error: error }
+                    })
+                    onError(error)
+                })
+
+        } catch (error) {
+            dispatch({
+                type: TYPES.PUT_USER_FAILURE,
+                payload: { error: error }
+            })
+            onError(error)
+        }
+    }
+}
+
+export const changePasswordAction = (passwords, onSuccess, onError) => {
+
+    const token = localStorage.getItem('token')
+
+    const { newPassword, verifyNewPassword } = passwords
+
+    return async (dispatch) => {
+        try {
+            if (newPassword !== verifyNewPassword) throw new Error('Passwords are not same')
+            dispatch({ type: TYPES.CHANGE_PASSWORD_REQUEST })
+            await axios.put(`${authenticationAPI}/change-password`, passwords, { headers: { 'Authorization': `Bearer ${token}` } })
+                .then(() => {
+                    onSuccess()
+                })
+                .catch(error => {
+                    onError(error)
+                })
+
+        } catch (error) {
+            onError(error)
         }
     }
 }

@@ -7,6 +7,13 @@
     "generic.last-name": "Apellidos",
     "generic.search": "Buscar",
     "generic.action": "Acción",
+    "generic.the-information-can-be-edited": "La información puede ser editada",
+
+    "buttons.update": "Actualizar",
+    "buttons.create": "Crear",
+    "buttons.delete": "Eliminar",
+    "buttons.cancel": "Cancelar",
+    "buttons.change-password": "Cambiar Contraseña",
 
     "topbar.calls-list":"Lista de Llamadas",   
 
@@ -39,8 +46,8 @@
     "navbar.settings":"Configuraciones",
     "navbar.logout":"Cerrar Sesión",
 
+    "employees.id": "Id",
     "employees.create-employee": "Crear Empleado",
-    "employees.id":"Id",
     "employees.first-name":"Nombres",
     "employees.last-name":"Apellidos",
     "employees.job-title":"Puesto",
@@ -54,5 +61,20 @@
     "employees.state-province":"Estado/Provincia",
     "employees.zip-postal-code":"Codigo Postal",
     "employees.notes":"Notas",
-    "employees.avatar":"Avatar"
+    "employees.avatar":"Avatar",
+    "employees.session-personal":"PERSONAL",
+    "employees.session-contact":"CONTACTO",
+    "employees.session-address":"DIRECCIÓN",
+    "employees.session-notes":"NOTAS",
+
+    "user.id":"Id",   
+    "user.first-name":"Nombres",
+    "user.last-name":"Apellido",
+    "user.user-name":"Nombre de usuario",
+    "user.age":"Edad",
+    "user.password":"Contraseña Acutal",
+    "user.new-password":"Nueva Contraseña",
+    "user.verify-new-password":"Verificar Nueva Contraseña",
+    "user.session-personal":"PERSONAL",
+    "user.session-change-password":"CAMBIAR CONTRASEÑA"
 }
