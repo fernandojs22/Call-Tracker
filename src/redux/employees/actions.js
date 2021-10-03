@@ -1,16 +1,16 @@
 import axios from 'axios'
 import { types } from './types'
+import { AUTHORIZATION_BEARER } from '../constants/'
 
 const databaseAPI = process.env.REACT_APP_DATASTORE_API_URL
+const employeesRoute = process.env.REACT_APP_API_EMPLOYEES_ROUTE
 
-export const fetchEmployees = () => {
+export const fetchEmployees = (onError) => {
     
-    const token = localStorage.getItem('token')
-
     return async (dispatch) => {
         try {
             dispatch({ type: types.FETCH_EMPLOYEES_REQUEST })
-            await axios.get(`${databaseAPI}/employees`, { headers: {'Authorization': `Bearer ${token}` }} )
+            await axios.get(`${databaseAPI}${employeesRoute}`, { headers: AUTHORIZATION_BEARER } )
                 .then(responde => {
                     dispatch({
                         type: types.FETCH_EMPLOYEES_SUCCESS,
@@ -22,12 +22,14 @@ export const fetchEmployees = () => {
                         type: types.FETCH_EMPLOYEES_FAILURE,
                         payload: { error: error }
                     })
+                    onError(error)
                 })
         } catch (error) {
             dispatch({
                 type: types.FETCH_EMPLOYEES_FAILURE,
                 payload: { error: error }
             })
+            onError(error)
         }
     }
 }
@@ -67,13 +69,11 @@ export const setEmployee = (employee) => {
 }
 
 export const putEmployee = (employee, onSuccess, onError) => {
-    
-    const token = localStorage.getItem('token')
 
     return async (dispatch) => {
         try {
             dispatch({ type: types.PUT_EMPLOYEE_REQUEST })
-            await axios.put(`${databaseAPI}/employees`, employee, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
+            await axios.put(`${databaseAPI}${employeesRoute}`, employee, { params: { _id: employee._id }, headers: AUTHORIZATION_BEARER})
                 .then(data => {
                     dispatch({
                         type: types.PUT_EMPLOYEE_SUCCESS,
@@ -101,15 +101,13 @@ export const putEmployee = (employee, onSuccess, onError) => {
 
 export const postEmployee = (employee, onSuccess, onError)  => {
     
-    const token = localStorage.getItem('token')
-
     const { _id, ...data } = employee
     data.id = 999
 
     return async (dispatch) => {
         try {
             dispatch({ type: types.POST_EMPLOYEE_REQUEST })
-            await axios.post(`${databaseAPI}/employees`, data, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
+            await axios.post(`${databaseAPI}${employeesRoute}`, data, { params: { _id: employee._id }, headers: AUTHORIZATION_BEARER})
                 .then(data => {
                     dispatch({
                         type: types.POST_EMPLOYEE_SUCCESS,
@@ -137,12 +135,10 @@ export const postEmployee = (employee, onSuccess, onError)  => {
 
 export const deleteEmployee = (employee, onSuccess, onError) => {
     
-    const token = localStorage.getItem('token')
-
     return async (dispatch) => {
         try {
             dispatch({ type: types.DELETE_EMPLOYEE_REQUEST })
-            await axios.delete(`${databaseAPI}/employees`, { params: { _id: employee._id }, headers: {'Authorization': `Bearer ${token}` }})
+            await axios.delete(`${databaseAPI}${employeesRoute}`, { params: { _id: employee._id }, headers: AUTHORIZATION_BEARER})
                 .then(data => {
                     dispatch({
                         type: types.DELETE_EMPLOYEE_SUCCESS,
