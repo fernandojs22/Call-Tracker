@@ -1,15 +1,20 @@
 import axios from 'axios'
+
 import { TYPES } from '../types'
+import { AUTHORIZATION_BEARER } from '../../constants'
 
 const databaseAPI = process.env.REACT_APP_DATASTORE_API_URL
 const authenticationAPI = process.env.REACT_APP_AUTH_API_URL
 
-export const setUserAction = (token) => {
+const profileRoute = process.env.REACT_APP_API_PROFILE_ROUTE
+const changePasswordRoute = process.env.REACT_APP_API_CHANGE_PASSWORD_ROUTE
+
+export const setUserAction = () => {
 
     return async function (dispatch) {
         try {
             dispatch({ type: TYPES.STATE_REQUEST })
-            await axios.get(`${databaseAPI}/profile`, { headers: { 'Authorization': `Bearer ${token}` } })
+            await axios.get(`${databaseAPI}${profileRoute}`, { headers: AUTHORIZATION_BEARER })
                 .then(response => {
                     dispatch({
                         type: TYPES.SET_USER_SUCCESS,
@@ -33,18 +38,16 @@ export const setUserAction = (token) => {
 
 export const putUser = (user, onSuccess, onError) => {
 
-    const token = localStorage.getItem('token')
-
     return async (dispatch) => {
         try {
             dispatch({ type: TYPES.PUT_USER_REQUEST })
-            await axios.put(`${databaseAPI}/profile`, user, { headers: { 'Authorization': `Bearer ${token}` } })
+            await axios.put(`${databaseAPI}${profileRoute}`, user, { headers: AUTHORIZATION_BEARER })
                 .then(data => {
                     dispatch({
                         type: TYPES.PUT_USER_SUCCESS,
                         payload: { data: data }
                     })
-                    dispatch(setUserAction(token))
+                    dispatch(setUserAction())
                     onSuccess()
                 })
                 .catch(error => {
@@ -67,15 +70,13 @@ export const putUser = (user, onSuccess, onError) => {
 
 export const changePasswordAction = (passwords, onSuccess, onError) => {
 
-    const token = localStorage.getItem('token')
-
     const { newPassword, verifyNewPassword } = passwords
 
     return async (dispatch) => {
         try {
             if (newPassword !== verifyNewPassword) throw new Error('Passwords are not same')
             dispatch({ type: TYPES.CHANGE_PASSWORD_REQUEST })
-            await axios.put(`${authenticationAPI}/change-password`, passwords, { headers: { 'Authorization': `Bearer ${token}` } })
+            await axios.put(`${authenticationAPI}${changePasswordRoute}`, passwords, { headers: AUTHORIZATION_BEARER })
                 .then(() => {
                     onSuccess()
                 })

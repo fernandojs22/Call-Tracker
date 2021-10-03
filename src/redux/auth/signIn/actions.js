@@ -1,7 +1,9 @@
 import axios from 'axios'
 import { TYPES } from '../types'
 import { setUserAction } from '../user/actions'
+
 const authenticationAPI = process.env.REACT_APP_AUTH_API_URL
+const loginLocalRoute = process.env.REACT_APP_API_LOGIN_LOCAL_ROUTE
 
 export const setRememberMeAction = (past, rememberMe, email) => {
     return async function (dispatch) {
@@ -37,7 +39,7 @@ export const signInLocalAction = (user, onSuccess, onError) => {
     return async function (dispatch) {
         try {
             dispatch({ type: TYPES.LOGIN_REQUEST })
-            await axios.post(`${authenticationAPI}/login/local`, {
+            await axios.post(`${authenticationAPI}${loginLocalRoute}`, {
                 email: user.email,
                 password: user.password
             })
