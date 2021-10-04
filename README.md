@@ -1,6 +1,12 @@
 # Calls Tracker
 
-Calls Tracker System is a monolithic application that support multilanguages build with React, Node.js, Material UI, Axios, HTTP Bearer Authentication, API Endpoints is request to Mongo Database.
+## Description
+
+Calls Tracker System is a web application when users can assign and track status of customers calls, also navigate by customers, employees, and calls, as well as track by priority status, and assignment. And you can generate useful reports in real time such as Open calls by Assigned to that can give you extra edge you need when things get busy.
+
+## Tech
+
+Calls Tracker is a monolithic application that support multilanguages build with React, Node.js, Material UI, Axios, HTTP Bearer Authentication, API Endpoints is request to Mongo Database.
 
 
 ## Development
