@@ -1,3 +1,4 @@
+import React from 'react'
 import { useStyles } from '../../assets/stytes/globalStyle'
 
 import Navbar from './Navbar'

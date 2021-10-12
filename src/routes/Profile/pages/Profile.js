@@ -24,6 +24,8 @@ import {
     VisibilityOff as VisibilityOffIcon
 } from '@material-ui/icons'
 
+import Alert from '@material-ui/lab/Alert'
+
 import { putUser, changePasswordAction } from '../../../redux/auth/user/actions'
 import { sessions } from '../models/profile.model'
 
@@ -32,6 +34,8 @@ import AvatarShortBox from '../../../components/Avatar/AvatarShortBox'
 import IntlMessages from '../../../components/Utils/IntlMessages'
 
 import { useStyles } from '../../../assets/stytes/globalStyle'
+
+import { useForm, Controller } from 'react-hook-form'
 
 const avatar = {
     avatar: '/static/images/avatars/avatar_6.png',
@@ -50,8 +54,6 @@ const Profile = () => {
 
     const [visibility, setVisibility] = useState(true)
 
-    const [userState, setUserState] = useState(user)
-
     const [changePassword, setChangePassword] = useState({
         _id: user._id,
         password: '',
@@ -59,46 +61,26 @@ const Profile = () => {
         verifyNewPassword: ''
     })
 
-    const [changePasswordError, setChangePasswordError] = useState({
-        password: true,
-        newPassword: true,
-        verifyNewPassword: true
-    })
-
-
-    const handleChange = (e) => {
-        setUserState(prevState => { return { ...prevState, [e.target.name]: e.target.value } })
-
-        if (e.target.value === "") {
-            setChangePasswordError(prevState => { return { ...prevState, [e.target.name]: true } })
-        } else {
-            setChangePasswordError(prevState => { return { ...prevState, [e.target.name]: false } })
-        }
-
-    }
-
     const dispatch = useDispatch()
     const history = useHistory()
 
     const sessionList = Object.keys(sessions)
 
-    const handleSubmit = (e) => {
-        e.preventDefault()
+    const [buttonName, setButtonName] = useState('')
 
-        const flag = Object.values(changePasswordError).find(e => e === true)
+    const onSubmit = (data) => {
 
         if (buttonName === 'update') {
             dispatch(putUser(
-                userState,
+                data,
                 () => {
                     history.push('/')
                 },
                 (err) => {
                     alert(err)
-
                 }
             ))
-        } else if (buttonName === 'changepassword' && !flag) {
+        } else if (buttonName === 'changepassword') {
             dispatch(changePasswordAction(
                 changePassword,
                 () => {
@@ -109,12 +91,12 @@ const Profile = () => {
 
                 }
             ))
-        }else if (buttonName === 'changepassword' && flag) {
-            alert('A field is empy')
         }
     }
 
-    const [buttonName, setButtonName] = useState('')
+    const { handleSubmit, control, register } = useForm({
+        defaultValues: user
+    })
 
     const Sessions = () => {
         return (
@@ -143,19 +125,27 @@ const Profile = () => {
                                                 sessions[`${session}`].map((field) => {
                                                     if (field.display) {
                                                         return (
-                                                            <TextField
+                                                            <Controller
                                                                 key={field.field}
-                                                                variant="outlined"
-                                                                fullWidth
-                                                                label={<IntlMessages id={field.label} />}
-                                                                multiline={field.multiline}
-                                                                minRows={6}
-                                                                required={field.required}
-                                                                className={classes.field}
-                                                                id={field.field}
                                                                 name={field.field}
-                                                                value={userState[field.field]}
-                                                                onChange={(e) => handleChange(e)}
+                                                                control={control}
+                                                                rules={{ required: { value: true, message: `${field.field} is required` } }}
+                                                                render={({ formState }) => (
+                                                                    <>
+                                                                        <TextField
+                                                                            variant="outlined"
+                                                                            className={classes.field}
+                                                                            fullWidth
+                                                                            label={<IntlMessages id={field.label} />}
+                                                                            multiline={field.multiline}
+                                                                            minRows={6}
+                                                                            id={field.field}
+                                                                            name={field.field}
+                                                                            {...register(field.field)}
+                                                                        />
+                                                                        {formState?.errors[field.field]?.message ? <Alert severity="error">{formState?.errors[field.field]?.message}</Alert> : null}
+                                                                    </>
+                                                                )}
                                                             />
                                                         )
                                                     } else {
@@ -169,7 +159,7 @@ const Profile = () => {
                             </Grid>
                         )
                     } else {
-                        return <div></div>
+                        return <></>
                     }
                 })}
             </>
@@ -178,7 +168,7 @@ const Profile = () => {
 
     return (
         <Container>
-            <form noValidate autoComplete="off" onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <Grid
                     container
                     spacing={2}
@@ -202,12 +192,12 @@ const Profile = () => {
                                         type="password"
                                         fullWidth
                                         label={<IntlMessages id="user.password" />}
-                                        required
+                                        // required
                                         className={classes.field}
                                         name="password"
                                         value={changePassword.password}
                                         onChange={(e) => setChangePassword(prevState => { return { ...prevState, [e.target.name]: e.target.value } })}
-                                        error={changePasswordError.password}
+                                    // error={changePasswordError.password}
                                     />
                                 </Typography>
                                 <Typography component="span" variant="body2">
@@ -216,12 +206,12 @@ const Profile = () => {
                                         type={visibility ? "password" : "text"}
                                         fullWidth
                                         label={<IntlMessages id="user.new-password" />}
-                                        required
+                                        // required
                                         className={classes.field}
                                         name="newPassword"
                                         value={changePassword.newPassword}
                                         onChange={(e) => setChangePassword(prevState => { return { ...prevState, [e.target.name]: e.target.value } })}
-                                        error={changePasswordError.newPassword}
+                                        // error={changePasswordError.newPassword}
                                         InputProps={{
                                             endAdornment: (
                                                 <InputAdornment>
@@ -242,13 +232,13 @@ const Profile = () => {
                                         type="password"
                                         fullWidth
                                         label={<IntlMessages id="user.verify-new-password" />}
-                                        required
+                                        // required
                                         className={classes.field}
                                         name="verifyNewPassword"
                                         value={changePassword.verifyNewPassword}
                                         onChange={(e) => setChangePassword(prevState => { return { ...prevState, [e.target.name]: e.target.value } })}
-                                        error={changePasswordError.verifyNewPassword}
-                                        
+                                    // error={changePasswordError.verifyNewPassword}
+
                                     />
                                 </Typography>
                             </CardContent>

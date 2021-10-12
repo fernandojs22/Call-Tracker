@@ -14,7 +14,7 @@ export const setUserAction = () => {
     return async function (dispatch) {
         try {
             dispatch({ type: TYPES.STATE_REQUEST })
-            await axios.get(`${databaseAPI}${profileRoute}`, { headers: AUTHORIZATION_BEARER })
+            await axios.get(`${databaseAPI}${profileRoute}`, { headers: AUTHORIZATION_BEARER } )
                 .then(response => {
                     dispatch({
                         type: TYPES.SET_USER_SUCCESS,
