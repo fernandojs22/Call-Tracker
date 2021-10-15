@@ -10,6 +10,7 @@ export const signOutAction = (done) => {
             await fetch(`${authenticationAPI}${logoutRoute}`)
                 .then(() => {
                     localStorage.removeItem('token')
+                    localStorage.removeItem('persist:root')
                     dispatch({
                         type: TYPES.LOGOUT_SUCCESS
                     })

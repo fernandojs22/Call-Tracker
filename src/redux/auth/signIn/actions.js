@@ -49,7 +49,8 @@ export const signInLocalAction = (user, onSuccess, onError) => {
                         payload: response.data
                     })
                     localStorage.setItem('token', response.data.token)
-                    dispatch(setUserAction(response.data.token))
+                    
+                    dispatch(setUserAction(`Bearer ${response.data.token}`))
                     onSuccess()
                 })
                 .catch(error => {

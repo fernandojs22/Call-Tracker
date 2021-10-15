@@ -9,12 +9,11 @@ const authenticationAPI = process.env.REACT_APP_AUTH_API_URL
 const profileRoute = process.env.REACT_APP_API_PROFILE_ROUTE
 const changePasswordRoute = process.env.REACT_APP_API_CHANGE_PASSWORD_ROUTE
 
-export const setUserAction = () => {
-
+export const setUserAction = (bearerToken) => {
     return async function (dispatch) {
         try {
             dispatch({ type: TYPES.STATE_REQUEST })
-            await axios.get(`${databaseAPI}${profileRoute}`, { headers: AUTHORIZATION_BEARER } )
+            await axios.get(`${databaseAPI}${profileRoute}`, { headers: {Authorization: bearerToken} } )
                 .then(response => {
                     dispatch({
                         type: TYPES.SET_USER_SUCCESS,
@@ -47,7 +46,7 @@ export const putUser = (user, onSuccess, onError) => {
                         type: TYPES.PUT_USER_SUCCESS,
                         payload: { data: data }
                     })
-                    dispatch(setUserAction())
+                    dispatch(setUserAction(AUTHORIZATION_BEARER.Authorization))
                     onSuccess()
                 })
                 .catch(error => {
