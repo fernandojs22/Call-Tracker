@@ -1,20 +1,36 @@
 import axios from 'axios'
 import { types } from './types'
-import { AUTHORIZATION_BEARER } from '../constants/'
+// import { AUTHORIZATION_BEARER } from '../constants/'
+import { employeesQuery } from '../../graphQL/querys/employees'
 
 const databaseAPI = process.env.REACT_APP_DATASTORE_API_URL
+const graphqlAPI = process.env.REACT_APP_DATABASE_API_URL
 const employeesRoute = process.env.REACT_APP_API_EMPLOYEES_ROUTE
 
+const AUTHORIZATION_BEARER = {
+    Authorization: `Bearer ${localStorage.getItem('token')}`
+}
+
 export const fetchEmployees = (onError) => {
-    
+
     return async (dispatch) => {
         try {
             dispatch({ type: types.FETCH_EMPLOYEES_REQUEST })
-            await axios.get(`${databaseAPI}${employeesRoute}`, { headers: AUTHORIZATION_BEARER } )
+            // await axios.get(`${databaseAPI}${employeesRoute}`, { headers: AUTHORIZATION_BEARER } )
+            await axios({
+                url: graphqlAPI,
+                method: 'post',
+                data: {
+                    query: employeesQuery
+                },
+                headers: AUTHORIZATION_BEARER
+            })
                 .then(responde => {
+                    console.log(responde.data.data.employees)
                     dispatch({
                         type: types.FETCH_EMPLOYEES_SUCCESS,
-                        payload: { data: responde.data }
+                        // payload: { data: responde.data }
+                        payload: { data: responde.data.data.employees }
                     })
                 })
                 .catch(error => {
